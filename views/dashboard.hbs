@@ -88,8 +88,23 @@
                     <!--                    <div class="col-md-5 col-sm-5 col-xs-12 gutter">-->
 
                     <div class="sales">
-                        <h2>Your Transaction</h2>
-                        <br> {{transactions}}
+<!--                        <h2>Your Transaction</h2>-->
+
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Transaction</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    firstName: {{firstName}} <br>
+                                    lastName: {{lastName}} <br>
+                                    doses: {{doses}} <br>
+                                    <a href="#" class="card-link">More</a>
+                                </h6>
+                                <p class="card-text"></p>
+
+                            </div>
+                        </div>
+
+
 
                         <div class="btn-group">
                             <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
