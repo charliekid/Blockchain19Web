@@ -5,10 +5,11 @@ const http = require('http');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     req.session.username = "user1"
-
+    res.render('dashboard');
     var data;
     var transactionData;
     var json;
+    /*
     http.get("http://localhost:10050/transaction/list", (resp) => {
         resp.on("data", (information) => {
             data += information;
@@ -40,7 +41,7 @@ router.get('/', function(req, res, next) {
 
         });
 
-    });
+    });*/
 
 
 
