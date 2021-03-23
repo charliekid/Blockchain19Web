@@ -12,6 +12,32 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     let successful = false;
     let message = '';
+
+    // TODO figure out how we are gonna save usernames and stuff
+    if (req.body.username === 'user1' && req.body.password === 'test') {
+
+        successful = true;
+
+        // Lets the the actual Node party name from Corda
+        // http.get("http://localhost:10050/getPartyName", (resp) => {
+        //     resp.on("data", (information) => {
+        //         req.session.username = data;    // saving party name so we can reference later
+        //     });
+        //     resp.on("end", () => {
+        //         console.log(data);
+        //     });
+        // });
+        req.session.username = req.body.username;
+        // req.cookie('jason', 'the great!', { maxAge: 900000, httpOnly: true });
+        res.redirect('/dashboard');
+    }
+    else {
+        // delete the user as punishment
+        delete req.session.username;
+        message = 'Wrong username or password!'
+        // TODO redirect back to log in page noting that username or password is incorrect
+
+    }
     // const options = {
     //     url: 'http://localhost:10050/checkUserName',
     //     json: true,
@@ -40,20 +66,20 @@ router.post('/', function(req, res, next) {
     //         }
     //     }
     // );
-    const loginInfo = {
-            username: req.body.username,
-            paswword: req.body.password,
-            accountType: req.body.accountTypeSelection
-    }
-    axios.post(
-        'http://localhost:10050/postmethod',
-        loginInfo)
-        .then((res) => {
-            console.log(`Status: ${res.status}`);
-            console.log('Body: ', res.data);
-        }).catch((err) => {
-        console.error(err);
-    });
+    // const loginInfo = {
+    //         username: req.body.username,
+    //         paswword: req.body.password,
+    //         accountType: req.body.accountTypeSelection
+    // }
+    // axios.post(
+    //     'http://localhost:10050/postmethod',
+    //     loginInfo)
+    //     .then((res) => {
+    //         console.log(`Status: ${res.status}`);
+    //         console.log('Body: ', res.data);
+    //     }).catch((err) => {
+    //     console.error(err);
+    // });
 
         // if (gameId !== null) {
         //     const secret_msg = "❄️ The elves 🧝‍♂️ have set aside some space " + gameId + " in santa's workshop! ❄️";
@@ -88,31 +114,7 @@ router.post('/', function(req, res, next) {
     //     .catch((error) => {
     //         console.error(error)
     //     })
-    // // TODO figure out how we are gonna save usernames and stuff
-    // if (req.body.username === 'user1' && req.body.password === 'test') {
-    //
-    //     successful = true;
-    //
-    //     // Lets the the actual Node party name from Corda
-    //     // http.get("http://localhost:10050/getPartyName", (resp) => {
-    //     //     resp.on("data", (information) => {
-    //     //         req.session.username = data;    // saving party name so we can reference later
-    //     //     });
-    //     //     resp.on("end", () => {
-    //     //         console.log(data);
-    //     //     });
-    //     // });
-    //     req.session.username = req.body.username;
-    //     // req.cookie('jason', 'the great!', { maxAge: 900000, httpOnly: true });
-    //     res.redirect('/dashboard');
-    // }
-    // else {
-    //     // delete the user as punishment
-    //     delete req.session.username;
-    //     message = 'Wrong username or password!'
-    //     // TODO redirect back to log in page noting that username or password is incorrect
-    //
-    // }
+
 
     // Return success or failure
     // res.json({

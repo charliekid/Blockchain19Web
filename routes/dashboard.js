@@ -20,17 +20,23 @@ router.get('/', function(req, res, next) {
                 substring = substring.replaceAll("@", "");
                 console.log("\nsubstring = " + substring);
                 json = JSON.parse(substring);
-                console.log(json.data);
-                console.log(json.data[0].state);
-                console.log(json.data[0].state.data);
-                transactionData = json.data[0].state.data;
+                // console.log(json.data);
+                // console.log(json.data[0].state);
+                // console.log(json.data[0].state.data);
+                // console.log("data: " + json.data.size);
+                // try{
+                //     transactionData = json.data[0].state.data;
+                // } catch (err) {
+                    // means there isn't any data
+                // }
 
-                res.render('dashboard', {PartyName : req.session.username,
-                                            firstName:json.data[0].state.data.firstName,
-                                            lastName:json.data[0].state.data.lastName,
-                                            dose:json.data[0].state.data.dose
-
-                });
+                res.render('dashboard');
+                // res.render('dashboard', {PartyName : req.session.username,
+                //                             firstName:json.data[0].state.data.firstName,
+                //                             lastName:json.data[0].state.data.lastName,
+                //                             dose:json.data[0].state.data.dose
+                //
+                // });
 
             } catch (error) {
                 console.error(error);
