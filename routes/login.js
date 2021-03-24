@@ -62,13 +62,13 @@ router.post('/',function(req,res,next){
     var username = req.body.username;
     var password = req.body.password;
     var hashedPassword = getHashedPassword(password);
-    console.log(hashedPassword);
+    //console.log(hashedPassword);
     if(username == 'user1' && password == 'test'){
         const authToken = createAuthToken();
-        console.log("Right credentials");
+        //console.log("Right credentials");
         authTokens[authToken] = username;
         res.cookie('AuthToken',authToken);
-        console.log("After Auth");
+        //console.log("After Auth");
         res.redirect('/dashboard');
         return;
     }
