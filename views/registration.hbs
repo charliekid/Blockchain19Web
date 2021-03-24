@@ -11,8 +11,8 @@
             <img src="https://raw.githubusercontent.com/charliekid/RandomPractice/master/idea2.png" alt=""/>
             <h3>Welcome</h3>
             <p>You are seconds away from receiving your COVID-19 vaccine</p>
-
-            <input type="submit"  name="" value="Login"/><br/>
+            <a href="/login"> Login </a>
+<!--            <input type="submit"  value="Login"/><br/>-->
         </div>
         <div class="col-md-9 register-right">
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
@@ -26,7 +26,9 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h3 class="register-heading">Apply as a Employee</h3>
+                    <form action="/registration" method="post">
                     <div class="row register-form">
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="First Name *" value="" />
@@ -40,18 +42,17 @@
                             <div class="form-group">
                                 <input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
                             </div>
-
+                            <input type="submit" class="btnRegister"  value="Register"/>
                         </div>
                         <div class="col-md-6">
 
-
-
-                            <input type="submit" class="btnRegister"  value="Register"/>
                         </div>
                     </div>
+                    </form>
                 </div>
                 <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <h3  class="register-heading">Apply as a Hirer</h3>
+                    <form action="/registration" method="post">
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -72,6 +73,7 @@
                             <input type="submit" class="btnRegister"  value="Register"/>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

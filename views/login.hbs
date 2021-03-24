@@ -35,7 +35,8 @@
 
         </div>
         <div class="card-body">
-            <form action="/login"  method="post" >                <div class="input-group form-group">
+            <form action="/login"  method="post" >
+                <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
@@ -50,19 +51,20 @@
                 </div>
 
                 <div class="form-group" id="submitBtn">
-                    <input type="submit" name="btn" value="Login" class="btn btn-outline-danger float-right login_btn">
+                    <input type="submit" name="btn" value="Login" class="btn btn-outline-danger  login_btn">
                 </div>
 
             </form>
+            <div class="registerContainer">
+                {{!--    <button type="submit" id="registerBtn" >Register</button> --}}
+                <a  href="/registration" >Register</a>
+            </div>
         </div>
     </div>
 </div>
 <!--    END: This portion was taken from : https://bootsnipp.com/snippets/E1gVl-->
   <br>
-<div class="registerContainer">
-{{!--    <button type="submit" id="registerBtn" >Register</button> --}}
-    <a  href="/registration" >Register</a>
-</div>
+
 </body>
 <script>
 
