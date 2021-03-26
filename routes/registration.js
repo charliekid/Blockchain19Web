@@ -29,27 +29,21 @@ router.post('/',function(req,res,next){
     var hashedConfirmedPW = getHashedPassword(passwordConfirmed);
 
     //TODO: Check Password match
-    if(hashedPassword != hashedConfirmedPW){
-        console.log("Passwords don't match");
-//        res.render('/registration', {
-//            message: 'Passwords do not match',
-//            messageClass: 'alert-danger'
-//        });
+    if(hashedPassword == hashedConfirmedPW){
+        //console.log("Passwords don't match");
+
         //res.redirect('/registration');
+        res.redirect('/login');
         return;
     }
     else {
     //TODO: Send data
-
-        res.redirect('/login');
+        res.render('registration',{
+                    message: "Passwords don't match",
+                    messageClass: 'alert-danger'
+                });
+        //res.redirect('/login');
     }
-
-
-    /* console.log(firstName);
-    console.log(lastName);
-    console.log(hashedPassword);
-    console.log(hashedConfirmedPW); */
-
 
 });
 
