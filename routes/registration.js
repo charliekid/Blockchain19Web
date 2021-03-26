@@ -30,20 +30,19 @@ router.post('/',function(req,res,next){
 
     //TODO: Check Password match
     if(hashedPassword != hashedConfirmedPW){
-        //console.log("passwords dont match");
-        alert("Passwords don't match");
+        console.log("Passwords don't match");
 //        res.render('/registration', {
 //            message: 'Passwords do not match',
 //            messageClass: 'alert-danger'
 //        });
+        //res.redirect('/registration');
+        return;
     }
     else {
     //TODO: Send data
-        //res.redirect('/login');
+
+        res.redirect('/login');
     }
-
-
-    //TODO: Form must be complete before redirecting
 
 
     /* console.log(firstName);
