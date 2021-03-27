@@ -30,9 +30,6 @@ router.post('/',function(req,res,next){
 
     //TODO: Check Password match
     if(hashedPassword == hashedConfirmedPW){
-        //console.log("Passwords don't match");
-
-        //res.redirect('/registration');
         res.redirect('/login');
         return;
     }
