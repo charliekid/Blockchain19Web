@@ -29,14 +29,14 @@ router.post('/', function(req, res, next) {
         successful = true;
 
         // Lets the the actual Node party name from Corda
-        // http.get("http://localhost:10050/getPartyName", (resp) => {
-        //     resp.on("data", (information) => {
-        //         req.session.username = data;    // saving party name so we can reference later
-        //     });
-        //     resp.on("end", () => {
-        //         console.log(data);
-        //     });
-        // });
+         http.get("http://localhost:10050/getPartyName", (resp) => {
+             resp.on("data", (information) => {
+                 req.session.username = data;    // saving party name so we can reference later
+             });
+             resp.on("end", () => {
+                 console.log(data);
+             });
+         });
         req.session.username = req.body.username;
         // req.cookie('jason', 'the great!', { maxAge: 900000, httpOnly: true });
         res.redirect('/dashboard');

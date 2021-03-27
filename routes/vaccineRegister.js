@@ -1,5 +1,7 @@
 var express = require('express');
+var http = require('https');
 var router = express.Router();
+
 
 router.get('/', function(req,res,next){
     res.render('vaccineRegister');
@@ -9,13 +11,23 @@ router.post('/', function(req,res,next){
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
     var doses = 0;
-    //TODO: Find better way to check user info"
+
+    //TODO: Find better way to check user info and send dat to Spring controller"
     if(firstName == "John" && lastName == "Doe"){
+
+        //http.post request goes here
+//        http.post("http://localhost:10050/getPartyName", (resp) => {
+//                     resp.on("data", (information) => {
+//                         req.session.username = data;    // saving party name so we can reference later
+//                     });
+//                     resp.on("end", () => {
+//                         console.log(data);
+//                     });
+//                 });
         doses = doses + 1;
-        //Where user info goes for doctor approval
         res.redirect('/dashboard');
-        console.log("registered for first dose!");
-        console.log('Dose: ' + doses);
+        //console.log("registered for first dose!");
+        //console.log('Dose: ' + doses);
         return;
     }
     else{
