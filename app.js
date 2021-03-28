@@ -7,6 +7,8 @@ var logger = require('morgan');
 const session = require('express-session');
 var crypto = require('crypto');
 var authToken = {};
+// for database
+const mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -24,6 +26,23 @@ app.use(session({
   //TODO need to figure out a better way to do this
   secret: '6wOBwJBStY',
 }))
+
+// making a db connection
+const db = mysql.createConnection({
+  host: 'klbcedmmqp7w17ik.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  user: 'oumsisc1xcz8mi47',
+  password: 'q27tr9h1q8kkedv4',
+  database: 'slm3dzqcniu3ap83'
+});
+// connect to database and make it global so we can access it anywhere
+db.connect((err) => {
+  if (err) {
+    console.log('error has occurred');
+    throw err;
+  }
+  console.log('Connected to database');
+});
+global.db = db;
 
 
 app.use(logger('dev'));
