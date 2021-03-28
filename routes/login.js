@@ -7,11 +7,11 @@ var authTokens = {};
 
 function getHashedPassword(password) {
  var sha256 = crypto.createHash('sha256');
- var hash = sha256.update(password).digest('base64');
+ var hash = sha256.update(password).digest('hex');
  return hash;
 }
 function createAuthToken(){
-    return crypto.randomBytes(30).toString('hex');
+    return crypto.randomBytes(32).toString('hex');
 }
 
 /* GET home page. */
@@ -62,13 +62,14 @@ router.post('/',function(req,res,next){
     var username = req.body.username;
     var password = req.body.password;
     var hashedPassword = getHashedPassword(password);
-    //console.log(hashedPassword);
+    console.log(hashedPassword);
     if(username == 'user1' && password == 'test'){
         const authToken = createAuthToken();
         //console.log("Right credentials");
         authTokens[authToken] = username;
         res.cookie('AuthToken',authToken);
         //console.log("After Auth");
+        console.log(hashedPassword);
         res.redirect('/dashboard');
         return;
     }

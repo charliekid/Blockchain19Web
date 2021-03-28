@@ -16,14 +16,9 @@ router.post('/', function(req,res,next){
     if(firstName == "John" && lastName == "Doe"){
 
         //http.post request goes here
-//        http.post("http://localhost:10050/getPartyName", (resp) => {
-//                     resp.on("data", (information) => {
-//                         req.session.username = data;    // saving party name so we can reference later
-//                     });
-//                     resp.on("end", () => {
-//                         console.log(data);
-//                     });
-//                 });
+        http.post("http://localhost:10050/api/registerVaccine", function(req,res){
+            res.send(firstName);
+        });
         doses = doses + 1;
         res.redirect('/dashboard');
         //console.log("registered for first dose!");
