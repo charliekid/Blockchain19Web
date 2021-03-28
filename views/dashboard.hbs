@@ -89,7 +89,8 @@
 
                     <div class="sales">
 <!--                        <h2>Your Transaction</h2>-->
-
+<!--                        checks to see if there are any transactions-->
+                        {{#if transactions}}
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title">Transaction</h5>
@@ -103,7 +104,9 @@
 
                             </div>
                         </div>
-
+                        {{else}}
+                        <h2> No transactions</h2>
+                        {{/if}}
 
 
                         <div class="btn-group">

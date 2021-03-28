@@ -50,6 +50,22 @@
                     <input type="password"  name="password" class="form-control" placeholder="Password" id="password">
                 </div>
 
+                <div class="form-group">
+                    <label for="accountTypeSelection">Account Type</label>
+                    <div class="form-row align-items-center">
+                        <div class="">
+                            <select class="custom-select mr-sm-3" id="accountTypeSelection" name="accountTypeSelection">
+                                <option selected>Choose...</option>
+                                <option value="Patient">Patient</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Employer">Employer</option>
+                                <option value="ClinicAdmin">Clinic Admin</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
                 <div class="form-group" id="submitBtn">
                     <input type="submit" name="btn" value="Login" class="btn btn-outline-danger  login_btn">
                 </div>

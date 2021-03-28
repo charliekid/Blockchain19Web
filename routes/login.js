@@ -1,87 +1,102 @@
 var express = require('express');
 var router = express.Router();
-
+const http = require('http');
+var request = require('request');
+var axios = require('axios');
 var crypto = require('crypto');
-
 var authTokens = {};
 
-function getHashedPassword(password) {
- var sha256 = crypto.createHash('sha256');
- var hash = sha256.update(password).digest('hex');
- return hash;
-}
-function createAuthToken(){
-    return crypto.randomBytes(32).toString('hex');
-}
+
+/************************************************************************************************
+ *                          GET/POST/PUT/CREATE etc
+ ************************************************************************************************/
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('login');
 });
-/*
-router.post('/', function(req, res, next) {
+
+
+router.post('/', async function(req, res, next) {
     let successful = false;
     let message = '';
-    console.log("username: " + req.session.username);
-    // TODO figure out how we are gonna save usernames and stuff
-    if (req.body.username === 'user1' && req.body.password === 'test') {
-
-        successful = true;
-
-        // Lets the the actual Node party name from Corda
-         http.get("http://localhost:10050/getPartyName", (resp) => {
-             resp.on("data", (information) => {
-                 req.session.username = data;    // saving party name so we can reference later
-             });
-             resp.on("end", () => {
-                 console.log(data);
-             });
-         });
-        req.session.username = req.body.username;
-        // req.cookie('jason', 'the great!', { maxAge: 900000, httpOnly: true });
+    hashedUsername = hashSha256(req.body.username);
+    hashedPassword = hashSha256(req.body.password);
+    let dbResult = await verifyLogin(hashedUsername, hashedPassword, req.body.accountTypeSelection);
+    // this means we got some data
+    if(dbResult != null) {
+        console.log("dbresult:" + dbResult);
+        req.session.username = dbResult;
         res.redirect('/dashboard');
+    } else {
+        console.log("inccorect log in");
+        // TODO : redirect to log in page saying that password and username is incorrect
     }
-    else {
-        // delete the user as punishment
-        delete req.session.username;
-        message = 'Wrong username or password!'
-        // TODO redirect back to log in page noting that username or password is incorrect
-
-    }
-
-    // Return success or failure
-    // res.json({
-    //     successful: successful,
-    //     message: message
-    // });
-
-    //res.render('login');
-});
-*/
-router.post('/',function(req,res,next){
-    var username = req.body.username;
-    var password = req.body.password;
-    var hashedPassword = getHashedPassword(password);
-    console.log(hashedPassword);
-    if(username == 'user1' && password == 'test'){
-        const authToken = createAuthToken();
-        //console.log("Right credentials");
-        authTokens[authToken] = username;
-        res.cookie('AuthToken',authToken);
-        //console.log("After Auth");
-        console.log(hashedPassword);
-        res.redirect('/dashboard');
-        return;
-    }
-    else {
-        res.render('login',{
-            message: 'Invalid username or password',
-            messageClass: 'alert-danger'
-        });
-    }
-
-
 
 });
+
+/************************************************************************************************
+ *                          FUNCTIONS/METHODS
+ ************************************************************************************************/
+
+/**
+ * Created by Jorge
+ * @param password
+ * @returns {string}
+ */
+function getHashedPassword(password) {
+    var sha256 = crypto.createHash('sha256');
+    var hash = sha256.update(password).digest('hex');
+    return hash;
+}
+
+/**
+ * Created by Jorge
+ * @returns {string}
+ */
+function createAuthToken(){
+    return crypto.randomBytes(32).toString('hex');
+}
+
+/**
+ * Wrapper function for Jorge created functions
+ * Created by Charlie
+ * @param stringToBeHashed - The string in which we want to has into sha-256
+ * @returns {string} - the hashed value
+ */
+function hashSha256(stringToBeHashed) {
+    hashed = getHashedPassword(stringToBeHashed);
+    return hashed;
+}
+
+/**
+ * Used to verify user login information against a specifed database.
+ *  Created by Charlie
+ * @param hashedUsername
+ * @param hashedPassword
+ * @param partyType
+ * @returns the Party's unique id if the SQL query is sucessful. Otherwise it will return null.
+ */
+function verifyLogin(hashedUsername, hashedPassword, partyType) {
+    // Our SQL query we will use
+    let query = 'SELECT partyid FROM Users_table WHERE username=? AND password=? AND partyType=?;';
+    // The data that is being passed into the SQL query
+    let data = [hashedUsername, hashedPassword, partyType]
+    // Making a promise so that does this before continuing with the code.
+    return new Promise(function(resolve, reject) {
+        // Doing the actual DB query to get our result
+        db.query(query, data, (err, result) => {
+            if (err) {
+                console.log("error" + err);
+            } else if (result.length > 0) { // This means we got results back from our query
+                 // console.log("partyid: " + result[0].partyid);
+                // console.log("result length :" + result.length);
+                resolve(result[0].partyid);
+            } else { // This means we got zero results back from our query.
+                return resolve(null);
+            }
+        })
+    });
+};
 
 module.exports = router;
