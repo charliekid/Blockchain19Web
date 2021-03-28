@@ -17,6 +17,11 @@
  <title>COVID Vaccine Tracker</title>
 </head>
 <body>
+  {{#if message}}
+      <div class="alert {{messageClass}}" role="alert">
+         {{message}}
+       </div>
+   {{/if}}
 
 <!--    START: This portion was taken from : https://bootsnipp.com/snippets/E1gVl-->
 <div class="container">
@@ -67,6 +72,11 @@
     </div>
 </div>
 <!--    END: This portion was taken from : https://bootsnipp.com/snippets/E1gVl-->
+<div>
+    <form action="./registration" method="get" >
+        <button type="submit" id="registerBtn">Register</button>
+    </form>
+</div>
 </body>
 <script>
     $(document).ready(function() {

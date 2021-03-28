@@ -4,11 +4,24 @@ const http = require('http');
 const axios = require('axios')
 var request = require('request');
 
+var crypto = require('crypto');
+
+var authTokens = {};
+
+function getHashedPassword(password) {
+ var sha256 = crypto.createHash('sha256');
+ var hash = sha256.update(password).digest('base64');
+ return hash;
+}
+function createAuthToken(){
+    return crypto.randomBytes(30).toString('hex');
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('login');
 });
-
+/*
 router.post('/', function(req, res, next) {
     let successful = false;
     let message = '';
@@ -124,6 +137,30 @@ router.post('/', function(req, res, next) {
 
     //res.render('login');
 });
+*/
+router.post('/',function(req,res,next){
+    var username = req.body.username;
+    var password = req.body.password;
+    var hashedPassword = getHashedPassword(password);
+    console.log(hashedPassword);
+    if(username == 'user1' && password == 'test'){
+        const authToken = createAuthToken();
+        console.log("Right credentials");
+        authTokens[authToken] = username;
+        res.cookie('AuthToken',authToken);
+        console.log("After Auth");
+        res.redirect('/dashboard');
+        return;
+    }
+    else {
+        res.render('login',{
+            message: 'Invalid username or password',
+            messageClass: 'alert-danger'
+        });
+    }
 
+
+
+});
 
 module.exports = router;
