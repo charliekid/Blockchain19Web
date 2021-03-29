@@ -1,7 +1,7 @@
 var express = require('express');
 var http = require('https');
 var router = express.Router();
-var axios = require('axios');
+var axios = require('axios').default;
 
 
 router.get('/', function(req,res,next){
@@ -41,6 +41,17 @@ router.post('/', function(req,res,next){
     var dose = 0;
 
     //var bodyFormData = new FormData;
+        console.log("before axios call");
+        axios.post('http://localhost:10050/registerVaccine',{},{
+        headers:{  firstName: first,lastName: last, dose: dose }
+
+        })
+        .then((response) => {
+          console.log("inside axios post call");
+          console.log(response);
+        })
+        console.log("Axios was called");
+            /*
             axios({
                 method: 'post',
                 url: 'http://localhost:10050/registerVaccine',
@@ -48,6 +59,7 @@ router.post('/', function(req,res,next){
                     firstName: first,
                     lastName: last,
                     dosage: 0,
+                    /*
                     approvedForVaccination: null,
                     firstDoseDate: null,
                     firstDoseLot: '',
@@ -61,14 +73,17 @@ router.post('/', function(req,res,next){
                     doctor: null,
                     patientEmployer: null,
                     clinicAdmin: null
+
                 }
             })
             .then((response) => {
+               console.log("inside axios post call");
+
               console.log(response);
             }, (error) => {
               console.log(error);
-            });
-
+            });*/
+            //res.redirect('dashboard');
 
 });
 
