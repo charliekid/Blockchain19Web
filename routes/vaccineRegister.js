@@ -1,8 +1,7 @@
 var express = require('express');
 var http = require('https');
-var axios = require('axios');
 var router = express.Router();
-
+var axios = require('axios');
 
 
 router.get('/', function(req,res,next){
@@ -41,18 +40,34 @@ router.post('/', function(req,res,next){
     var last = req.body.lastName;
     var dose = 0;
 
-    var bodyFormData = new FormData;
-
-    if(first == req.body.firstName && last == req.body.lasName){
-            bodyFormData.append('firstName', first);
-            bodyFormData.append('lastName', last);
-            bodyFormData.append('dosage', dose);
-            axios.post('')
-    }
-
-
-
-
+    //var bodyFormData = new FormData;
+            axios({
+                method: 'post',
+                url: 'http://localhost:10050/registerVaccine',
+                data: {
+                    firstName: first,
+                    lastName: last,
+                    dosage: 0,
+                    approvedForVaccination: null,
+                    firstDoseDate: null,
+                    firstDoseLot: '',
+                    firstDoseManufacturer: '',
+                    secondDoseDate: null,
+                    secondDoseLot: '',
+                    secondDoseManufacturer: '',
+                    vaccinationProcessComplete: null,
+                    //approvedForWork,
+                    patientFullName: null,
+                    doctor: null,
+                    patientEmployer: null,
+                    clinicAdmin: null
+                }
+            })
+            .then((response) => {
+              console.log(response);
+            }, (error) => {
+              console.log(error);
+            });
 
 
 });
