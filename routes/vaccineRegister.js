@@ -47,7 +47,8 @@ router.post('/', function(req,res,next){
 
         })
         .then((response) => {
-          console.log("inside axios post call");
+          //console.log("inside axios post call");
+          //console.log(response[0].data);
           console.log(response);
         })
         console.log("Axios was called");
