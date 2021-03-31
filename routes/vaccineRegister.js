@@ -1,3 +1,7 @@
+/*
+* Created by Jorge
+*/
+
 var express = require('express');
 var http = require('https');
 var router = express.Router();
@@ -40,19 +44,21 @@ router.post('/', function(req,res,next){
     var last = req.body.lastName;
     var dose = 0;
 
-    //var bodyFormData = new FormData;
-        //console.log("before axios call");
+
+        //Post request: sends user data to Spring controller
         axios.post('http://localhost:10050/registerVaccine',{},{
         headers:{  firstName: first,lastName: last, dose: dose }
 
         })
+        //Server  successful response
         .then((response) => {
           //console.log("inside axios post call");
           //console.log(response[0].data);
+
           console.log(response);
           res.redirect('dashboard');
         })
-        console.log("Axios was called");
+
             /*
             axios({
                 method: 'post',

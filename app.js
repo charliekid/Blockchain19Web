@@ -16,6 +16,7 @@ var loginRouter = require('./routes/login');
 var dashboardRouter = require('./routes/dashboard');
 var registrationRouter = require('./routes/registration');
 var vaccineRegister = require('./routes/vaccineRegister');
+var clinicAdmin = require('./routes/clinicAdmin');
 
 var app = express();
 
@@ -59,6 +60,7 @@ app.use('/login', loginRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/registration',registrationRouter);
 app.use('/vaccineRegister', vaccineRegister);
+app.use('/clinicAdmin', clinicAdmin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

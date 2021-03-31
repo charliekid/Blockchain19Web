@@ -1,0 +1,58 @@
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/clinicAdminStyle.css" />
+
+</head>
+
+<body>
+<h1>Clinic Administrator</h1>
+<!--START - Portion taken from: https://bootsnipp.com/snippets/7nmOW -->
+<div class="container contact-form">
+    <div class="contact-image">
+        <img src="https://raw.githubusercontent.com/charliekid/RandomPractice/master/idea2.png" alt="rocket_contact"/>
+    </div>
+
+    <form action="/clinicAdmin" method="post">
+<!--        <h3>Drop Us a Message</h3>-->
+
+        <div class="row">
+
+            <div class="col-md-6">
+<!--                <div class="approvalForm">-->
+                <div class="form-group">
+                    <input type="text" name="mfrName" class="form-control" placeholder="Vaccine Manufacturer *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="dateOne" class="form-control" placeholder="Vaccine 1 Date *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="lotNumberOne" class="form-control" placeholder="Vaccine 1 Lot # *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="dateTwo" class="form-control" placeholder="Vaccine 2 Date *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="lotNumberTwo" class="form-control" placeholder="Vaccine 2 Lot # *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="btnSubmit" class="btnContact" value="Send Approval" />
+                </div>
+<!--                </div>-->
+            </div>
+
+            <!--
+            <div class="col-md-6">
+                <div class="form-group">
+                    <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                </div>
+            </div> -->
+
+        </div>
+    </form>
+
+</div>
+<!--END - Portion taken from: https://bootsnipp.com/snippets/7nmOW -->
+</body>
