@@ -85,3 +85,6 @@ input:focus{
   border-radius: 0;
 }
 /*END: This portion was taken from : https://bootsnipp.com/snippets/E1gVl*/
+.registerContainer{
+ text-align:center;
+}

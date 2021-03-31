@@ -1,0 +1,48 @@
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/vaccineRegistrationStyle.css" />
+
+    {{#if message}}
+        <div class="alert {{messageClass}}" role="alert">
+            {{message}}
+        </div>
+    {{/if}}
+</head>
+<body>
+
+<div class="container register-form">
+    <form action="/vaccineRegister" method="post">
+    <div class="form">
+        <div class="note">
+            <p>Hi Patient1, your seconds away from registering for a vaccine</p>
+        </div>
+
+        <div class="form-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="firstName" placeholder="First Name *" value=""/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="lastName" placeholder="Last Name *" value=""/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" name="dosage" value=""/>
+                    </div>
+
+                </div>
+            </div>
+            <input type="submit" class="btnSubmit"  value="Register for Vaccine"/>
+        </div>
+
+    </div>
+    </form>
+</div>
+</body>
+
