@@ -41,7 +41,7 @@ router.post('/', function(req,res,next){
     var dose = 0;
 
     //var bodyFormData = new FormData;
-        console.log("before axios call");
+        //console.log("before axios call");
         axios.post('http://localhost:10050/registerVaccine',{},{
         headers:{  firstName: first,lastName: last, dose: dose }
 
@@ -50,6 +50,7 @@ router.post('/', function(req,res,next){
           //console.log("inside axios post call");
           //console.log(response[0].data);
           console.log(response);
+          res.redirect('dashboard');
         })
         console.log("Axios was called");
             /*
