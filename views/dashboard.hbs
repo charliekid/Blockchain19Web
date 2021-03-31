@@ -91,21 +91,25 @@
 <!--                        <h2>Your Transaction</h2>-->
 <!--                        checks to see if there are any transactions-->
                         {{#if transactions}}
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Transaction</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    firstName: {{firstName}} <br>
-                                    lastName: {{lastName}} <br>
-                                    doses: {{doses}} <br>
-                                    <a href="#" class="card-link">More</a>
-                                </h6>
-                                <p class="card-text"></p>
+                            {{#each transactions}}
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Transaction</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        state: {{state.data.firstName}} <br>
+                                        firstName: {{state.data.firstName}} <br>
+                                        lastName: {{state.data.lastName}} <br>
+                                        doses: {{state.data.dose}} <br>
+                                        <a href="#" class="card-link">More</a>
+                                    </h6>
+                                    <p class="card-text"></p>
 
+                                </div>
                             </div>
-                        </div>
+                            {{/each}}
                         {{else}}
-                        <h2> No transactions</h2>
+                            <h2> No transactions</h2>
+                            <h2> {{transactions}}</h2>
                         {{/if}}
 
 

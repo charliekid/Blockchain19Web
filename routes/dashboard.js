@@ -11,6 +11,7 @@ var axios = require('axios');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
+    req.session.username = 'Patient1';
     var data;
     var transactionData;
     var json;
@@ -35,13 +36,18 @@ router.get('/', function(req, res, next) {
                     }
                 }
                 console.log("count :" + count);
-                console.log(json);
-                // which means we got no transactions
-                if(count == 0 ) {
-
-                } else {
+                console.log(json.data);
+                console.log("first name is :" + json.data[0].state.data.firstName);
+                let transactionData = {
+                    numOfTransaction : count,
 
                 }
+                // which means we got no transactions
+                // if(count == 0 ) {
+                //     res.render('dashboard', {transaction : json, PartyName: req.session.username});
+                // } else {
+                //     res.render('dashboard', {transaction : json, PartyName: req.session.username});
+                // }
                 // console.log(json.data);
                 // console.log(json.data[0].state);
                 // console.log(json.data[0].state.data);
@@ -52,7 +58,7 @@ router.get('/', function(req, res, next) {
                 // means there isn't any data
                 // }
 
-                res.render('dashboard', {transaction : json, PartyName: req.session.username});
+                res.render('dashboard', {transactions : json.data, PartyName: req.session.username});
                 // res.render('dashboard', {PartyName : req.session.username,
                 //                             firstName:json.data[0].state.data.firstName,
                 //                             lastName:json.data[0].state.data.lastName,
