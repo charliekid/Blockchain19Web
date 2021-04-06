@@ -15,11 +15,12 @@ router.post('/', function(req,res,next){
     var dateTwo = data.dateTwo;
     var lotTwo = data.lotNumberTwo;
 
-    axios.post('http://localhost:10050/clinicAdminApproval', {mfrName: mfrName, firstDate: dateOne, lotOne: lotOne, secDate: dateTwo, secLot: lotTwo
+    axios.post('http://localhost:10050/clinicAdminApproval', {},{
+        headers: {mfrName: mfrName, firstDate: dateOne, lotOne: lotOne, secDate: dateTwo, secLot: lotTwo}
 
     })
     .then((response)=>{
-
+        console.log(response);
     })
 
 
