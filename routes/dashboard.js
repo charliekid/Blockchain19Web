@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/patient', function(req, res, next) {
-    req.session.username = 'Patient1';
+    // req.session.username = 'Patient1';
     var data;
     var json;
 
@@ -50,7 +50,7 @@ router.get('/patient', function(req, res, next) {
                 }
                 console.log("count :" + count);
                 console.log(json.data);
-                console.log("first name is :" + json.data[0].state.data.firstName);
+                // console.log("first name is :" + json.data[0].state.data.firstName);
 
 
                 res.render('dashboards/patient-dashboard', {transactions : json.data, PartyName: req.session.username});
