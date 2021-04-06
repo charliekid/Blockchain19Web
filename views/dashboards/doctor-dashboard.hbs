@@ -33,7 +33,7 @@
             <div class="navi">
                 <ul>
                     <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                    <li><a href="/clinicAdmin"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Transactions</span></a></li>
+                    <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Transactions</span></a></li>
                     <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Create Transaction</span></a></li>
                     <li><a href="/vaccineRegister"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Register for Vaccine</span></a></li>
                 </ul>
@@ -89,52 +89,53 @@
                     <div class="sales">
                         {{#if transactions}}
                             {{#each transactions}}
-                            <div class="card" style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">Transaction</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">
-                                        state: {{state.data.firstName}} <br>
-                                        firstName: {{state.data.firstName}} <br>
-                                        lastName: {{state.data.lastName}} <br>
-                                        doses: {{state.data.dose}} <br>
-<!--                                        <a href="#" class="card-link">More</a>-->
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transactionModal">
-                                            More
-                                        </button>
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Transaction</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            state: {{state.data.firstName}} <br>
+                                            firstName: {{state.data.firstName}} <br>
+                                            lastName: {{state.data.lastName}} <br>
+                                            doses: {{state.data.dose}} <br>
+                                            <!--                                        <a href="#" class="card-link">More</a>-->
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transactionModal">
+                                                More
+                                            </button>
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="transactionModalLabel">Tranasction:</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        firstName: {{state.data.firstName}} <br>
-                                                        lastName: {{state.data.lastName}} <br>
-                                                        doses: {{state.data.dose}} <br>
-                                                        {{#if state.data.approvedForVaccination}}
-                                                            approved: yes
-                                                        {{else}}
-                                                            approved: no
-                                                        {{/if}}
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="transactionModalLabel">Tranasction:</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            firstName: {{state.data.firstName}} <br>
+                                                            lastName: {{state.data.lastName}} <br>
+                                                            doses: {{state.data.dose}} <br>
+                                                            {{#if state.data.approvedForVaccination}}
+                                                                approved: yes
+                                                            {{else}}
+                                                                approved: no
+                                                            {{/if}}
 
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Approve Patient</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </h6>
-                                    <p class="card-text"></p>
+                                        </h6>
+                                        <p class="card-text"></p>
 
+                                    </div>
                                 </div>
-                            </div>
                             {{/each}}
                         {{else}}
                             <h2> No transactions</h2>
