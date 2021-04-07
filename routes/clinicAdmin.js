@@ -21,6 +21,7 @@ router.post('/', function(req,res,next){
     })
     .then((response)=>{
         console.log(response);
+        //res.redirect('/dashboard')
     })
 
 
