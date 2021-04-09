@@ -1,6 +1,7 @@
 /*
 * Created by Jorge
 */
+const session = require('express-session');
 
 var express = require('express');
 var http = require('https');
@@ -8,46 +9,20 @@ var router = express.Router();
 var axios = require('axios').default;
 
 
+
 router.get('/', function(req,res,next){
     res.render('vaccineRegister');
 });
-/*
-router.post('/', function(req,res,next){
 
-
-    //TODO: Find better way to check user info and send dat to Spring controller"
-    if(firstName == "John" && lastName == "Doe"){
-
-        //http.post request goes here
-        https.post("http://localhost:10050/api/registerVaccine", function(req,res){
-            res.send(firstName);
-            console.logO("Post request");
-        });
-        doses = doses + 1;
-        res.redirect('/dashboard');
-        console.log("post request sent");
-        //console.log("registered for first dose!");
-        //console.log('Dose: ' + doses);
-        return;
-    }
-    else{
-        res.render('vaccineRegister',{
-            message: "There was a problem with your registration, please try again",
-            messageClass: 'alert-danger'
-        });
-    }
-
-});
-*/
 router.post('/', function(req,res,next){
     var first = req.body.firstName;
     var last = req.body.lastName;
     var dose = 0;
-
+    var username = req.session.username;
 
         //Post request: sends user data to Spring controller
         axios.post('http://localhost:10050/registerVaccine',{},{
-        headers:{  firstName: first,lastName: last, dose: dose, username: req.session.username }
+        params:{  firstName: first,lastName: last, dose: dose, user: username }
 
         })
         //Server  successful response
@@ -56,7 +31,7 @@ router.post('/', function(req,res,next){
           //console.log(response[0].data);
 
           console.log(response);
-          res.redirect('dashboard');
+          res.redirect('/dashboards/patient-dashboard');
         })
 
             /*
