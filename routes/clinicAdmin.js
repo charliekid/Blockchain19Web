@@ -1,12 +1,24 @@
 var express = require('express');
 var router = express.Router();
 var axios = require('axios');
+const http = require('http');
 
 /* GET clinicAdmin page. */
 router.get('/', function(req, res, next) {
     res.render('clinicAdmin');
 });
+router.get('/clinicAdmin', function(req,res,next){
+    var data;
+    var json;
+    http.get("http://localhost:10050/transaction/list/"+req.session.username,(resp)=>{
+        resp.on("data", (information) => {
+          data += information;
+        });
+        resp.
 
+    });
+
+});
 router.post('/', function(req,res,next){
     var data = req.body;
     var mfrName = data.mfrName;

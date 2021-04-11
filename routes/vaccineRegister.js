@@ -18,11 +18,11 @@ router.post('/', function(req,res,next){
     var first = req.body.firstName;
     var last = req.body.lastName;
     var dose = 0;
-    var username = req.session.username;
+    //var username = req.session.username;
 
         //Post request: sends user data to Spring controller
         axios.post('http://localhost:10050/registerVaccine',{},{
-        params:{  firstName: first,lastName: last, dose: dose, user: username }
+        params:{  firstName: first,lastName: last, dose: dose, user: req.session.username }
 
         })
         //Server  successful response
