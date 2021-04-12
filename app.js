@@ -63,7 +63,7 @@ app.use('/registration',registrationRouter);
 app.use('/vaccineRegister', vaccineRegister);
 app.use('/clinicAdmin', clinicAdmin);
 //app.use('/dashboards/clinic-dashboard', dashboardRouter);
-//app.use('/dashboards/patient-dashboard', dashboardRouter);
+app.use('/dashboards/patient-dashboard', dashboardRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

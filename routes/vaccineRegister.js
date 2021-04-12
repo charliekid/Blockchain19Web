@@ -18,12 +18,14 @@ router.post('/', function(req,res,next){
     var first = req.body.firstName;
     var last = req.body.lastName;
     var dose = 0;
-    //var username = req.session.username;
-
+    var username = req.session.username;
+    var userString = JSON.stringify(username);
+    var usrString = res.json(username);
+    //console.log(userString);
         //Post request: sends user data to Spring controller
-        axios.post('http://localhost:10050/registerVaccine',{},{
-        params:{  firstName: first,lastName: last, dose: dose, user: req.session.username }
-
+        axios.post('http://localhost:10050/registerVaccine',{},
+        { params:{  firstName: first,lastName: last, dose: dose, user: usrString},
+          withCredentials: true
         })
         //Server  successful response
         .then((response) => {
@@ -31,7 +33,10 @@ router.post('/', function(req,res,next){
           //console.log(response[0].data);
 
           console.log(response);
-          res.redirect('/dashboards/patient-dashboard');
+          console.log(userString);
+          console.log(usrString);
+          //console.log(req.session.username);
+          res.render('dashboards/patient-dashboard');
         })
 
             /*
