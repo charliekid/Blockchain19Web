@@ -30,11 +30,11 @@ https://bit.ly/3dP3OBZ
 
 # Pre-Requisites
 
-See https://docs.corda.net/getting-set-up.html.
-    https://github.com/charliekid/Blockchain19
-Install NodeJS, ExpressJS, NPM (Node Package Manager),Axios, Nodemon
+ - See https://docs.corda.net/getting-set-up.html.
+       https://github.com/charliekid/Blockchain19
+- Install NodeJS, Node Package Manger(NPM)
     Download NodeJS: https://nodejs.org/en/download/
-Others can be installed via NPM 
+- Install ExpressJS,Axios, Nodemon via NPM
     'npm install express'
     'npm install nodemon'
     'npm install axios'
