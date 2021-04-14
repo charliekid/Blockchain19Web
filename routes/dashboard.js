@@ -121,7 +121,7 @@ router.get('/doctor', function(req, res, next) {
  *                          FUNCTIONS/METHODS
  ************************************************************************************************/
 router.get('/clinic', function(req,res,next){
-    req.session.username = 'Clinic1';
+   // req.session.username = 'Clinic1';
     var data;
     var json;
     http.get("http://localhost:10050/transaction/list/"+req.session.username,(resp)=>{

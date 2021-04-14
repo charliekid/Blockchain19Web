@@ -92,9 +92,10 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Transaction</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">
-                                            mfrName: {{state.data.firstName}} <br>
-                                            dateOne: {{state.data.firstName}} <br>
-                                            lotOne: {{state.data.lastName}} <br>
+
+                                            First Name: {{state.data.firstName}} <br>
+                                            Last Name: {{state.data.lastName}} <br>
+
 
                                             <!--                                        <a href="#" class="card-link">More</a>-->
                                             <!-- Button trigger modal -->
@@ -113,11 +114,15 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            mfrName: {{state.data.mfrName}} <br>
-                                                            dateOne: {{state.data.dateOne}} <br>
-                                                            lotOne: {{state.data.lotOne}} <br>
-                                                            dateTwo: {{state.data.dose}} <br>
-                                                            lotTwo: {{state.data.lotTwo }} <br>m
+                                                            First Name: {{state.data.firstName}} <br>
+                                                            Last Name: {{state.data.lastName}} <br>
+                                                            Total Doses: {{state.data.dose}} <br>
+                                                            Manfacturer: {{state.data.firstDoseManufacturer}} <br>
+                                                            1st Dose Lot: {{state.data.firstDoseLot}}<br>
+                                                            1st Dose Date: {{state.data.firstDoseDate}}<br>
+                                                            2nd Dose Lot: {{state.data.secondDoseLot}}<br>
+                                                            2nd Dose Date: {{state.data.secondDoseDate}}<br>
+
                                                             {{#if state.data.approvedForVaccination}}
                                                                 approved: yes
                                                             {{else}}

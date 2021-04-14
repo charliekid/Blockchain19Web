@@ -12,6 +12,8 @@ router.get('/', function(req, res, next) {
 //Post request to send vaccine info to Spring controller
 router.post('/', function(req,res,next){
     var data = req.body;
+    var firstName = data.firstName;
+    var lastName = data.lastName;
     var mfrName = data.mfrName;
     var dateOne = data.dateOne;
     var lotOne = data.lotNumberOne;
@@ -21,7 +23,7 @@ router.post('/', function(req,res,next){
 
     //Axios post request
     axios.post('http://localhost:10050/clinicAdminApproval', {},{
-        headers: {mfrName: mfrName, firstDate: dateOne, lotOne: lotOne, secDate: dateTwo, secLot: lotTwo},
+        headers: {firstName: firstName,lastName: lastName,mfrName: mfrName, firstDate: dateOne, lotOne: lotOne, secDate: dateTwo, secLot: lotTwo, username: req.session.username},
         withCredentials: true
 
     })
