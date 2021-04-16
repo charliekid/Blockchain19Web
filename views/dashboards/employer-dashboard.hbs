@@ -34,7 +34,7 @@
                 <ul>
                     <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
                     <!--                    <li><a href="/clinicAdmin"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Transactions</span></a></li>-->
-                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Create Transaction</span></a></li>
+                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Tab 1</span></a></li>
                 </ul>
             </div>
         </div>
@@ -70,7 +70,7 @@
                                                 </p>
                                                 <div class="divider">
                                                 </div>
-                                                <a href="/login" class="view btn-sm active">Logout</a>
+                                                <button onclick="logout()" class="view btn-sm active">Logout</button>
                                             </div>
                                         </li>
                                     </ul>
@@ -89,7 +89,7 @@
                             {{#each transactions}}
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body">
-                                        <h5 class="card-title">Transaction</h5>
+                                        <h5 class="card-title">Employee</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">
 
                                             First Name: {{state.data.firstName}} <br>
@@ -107,7 +107,7 @@
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="transactionModalLabel">Tranasction:</h5>
+                                                            <h5 class="modal-title" id="transactionModalLabel">Patient:</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
