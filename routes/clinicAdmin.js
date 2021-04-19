@@ -22,7 +22,7 @@ router.post('/', function(req,res,next){
     var lotOne = data.lotNumberOne;
     var dateTwo = data.dateTwo;
     var lotTwo = data.lotNumberTwo;
-    req.session.username = "Clinic-Admin";
+    req.session.username = "ClinicAdmin1";
 
     //Axios post request
     axios.post('http://localhost:10050/clinicAdminApproval', {},{
