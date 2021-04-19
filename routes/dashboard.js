@@ -21,7 +21,6 @@ router.get('/', function(req, res, next) {
         res.redirect('/dashboard/employer');
     }
 
-
 });
 
 router.get('/patient', function(req, res, next) {
