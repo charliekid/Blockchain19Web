@@ -35,6 +35,7 @@ router.post('/', async function(req, res, next) {
 
 });
 
+
 /************************************************************************************************
  *                          FUNCTIONS/METHODS
  ************************************************************************************************/
@@ -68,6 +69,10 @@ function hashSha256(stringToBeHashed) {
     hashed = getHashedPassword(stringToBeHashed);
     return hashed;
 }
+
+//function logout(){
+//
+//}
 
 /**
  * Used to verify user login information against a specifed database.

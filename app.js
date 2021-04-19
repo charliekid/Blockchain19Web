@@ -10,6 +10,7 @@ var authToken = {};
 // for database
 const mysql = require('mysql');
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
@@ -61,7 +62,8 @@ app.use('/dashboard', dashboardRouter);
 app.use('/registration',registrationRouter);
 app.use('/vaccineRegister', vaccineRegister);
 app.use('/clinicAdmin', clinicAdmin);
-
+//app.use('/dashboards/clinic-dashboard', dashboardRouter);
+//app.use('/dashboards/patient-dashboard', dashboardRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

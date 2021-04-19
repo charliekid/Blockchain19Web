@@ -120,6 +120,67 @@ router.get('/doctor', function(req, res, next) {
 /************************************************************************************************
  *                          FUNCTIONS/METHODS
  ************************************************************************************************/
+router.get('/clinic', function(req,res,next){
+   // req.session.username = 'Clinic1';
+    var data;
+    var json;
+    http.get("http://localhost:10050/transaction/list/"+req.session.username,(resp)=>{
+        resp.on("data", (information) => {
+          data += information;
+        });
+        resp.on("end", ()=>{
+          try{
+            var substring = data.substr(9, data.length);
+            substring = substring.replaceAll("@", "");
+            console.log("\nsubstring = " + substring);
+            json = JSON.parse(substring);
 
+            console.log(json.data);
+
+            res.render('dashboards/clinic-dashboard', {transactions : json.data, PartyName: req.session.username});
+          }
+          catch(err){
+            console.log(err);
+          }
+
+        });
+
+    });
+
+});
+
+router.get('/employer', function(req,res,next){
+   // req.session.username = 'Clinic1';
+    var data;
+    var json;
+    http.get("http://localhost:10050/transaction/list/"+req.session.username,(resp)=>{
+        resp.on("data", (information) => {
+          data += information;
+        });
+        resp.on("end", ()=>{
+          try{
+            var substring = data.substr(9, data.length);
+            substring = substring.replaceAll("@", "");
+            console.log("\nsubstring = " + substring);
+            json = JSON.parse(substring);
+
+            console.log(json.data);
+
+            res.render('dashboards/employer-dashboard', {transactions : json.data, PartyName: req.session.username});
+          }
+          catch(err){
+            console.log(err);
+          }
+
+        });
+
+    });
+
+});
+
+router.get('/logout', function(req,res,next) {
+    req.session.destroy();
+    res.redirect('/login');
+});
 
 module.exports = router;
