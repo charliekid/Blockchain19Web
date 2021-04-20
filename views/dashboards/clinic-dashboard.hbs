@@ -132,7 +132,8 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             {{#if state.data.approvedForVaccination}}
-                                                                <button type="submit" formaction="/clinicAdmin" class="btn btn-secondary" data-dismiss="modal">Approve</button>
+<!--                                                                <button type="submit" formaction="/clinicAdmin" class="btn btn-secondary" data-dismiss="modal">Approve</button>-->
+                                                                <a href="/clinicAdmin/{{state.data.firstName}}/{{state.data.lastName}}" class="view btn-sm active">Add Vaccine Info</a>
                                                             {{/if}}
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         </div>

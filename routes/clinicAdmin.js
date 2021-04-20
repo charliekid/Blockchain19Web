@@ -7,8 +7,12 @@ var axios = require('axios');
 const http = require('http');
 
 /* GET: Renders clinicAdmin page. */
-router.get('/', function(req, res, next) {
-    res.render('clinicAdmin');
+// router.get('/', function(req, res, next) {
+router.get('/:firstName/:lastName', function(req, res, next) {
+    res.render('clinicAdmin',
+        { firstName: req.params.firstName,
+                lastName: req.params.lastName
+        });
 });
 
 
@@ -22,6 +26,8 @@ router.post('/', function(req,res,next){
     var lotOne = data.lotNumberOne;
     var dateTwo = data.dateTwo;
     var lotTwo = data.lotNumberTwo;
+    // var doseNumber = req.body.doseNumberPicker;
+    //TODO: REMOVE THIS BELOW before deployment
     req.session.username = "ClinicAdmin1";
 
     //Axios post request
