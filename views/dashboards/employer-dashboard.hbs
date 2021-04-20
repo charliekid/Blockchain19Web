@@ -70,7 +70,7 @@
                                                 </p>
                                                 <div class="divider">
                                                 </div>
-                                                <button href="/dashboard/logout" class="view btn-sm active">Logout</button>
+                                                <a href="/dashboard/logout" class="view btn-sm active">Logout</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -119,6 +119,13 @@
                                                             Manfacturer: {{state.data.firstDoseManufacturer}} <br>
                                                             1st Dose Date: {{state.data.firstDoseDate}}<br>
                                                             2nd Dose Date: {{state.data.secondDoseDate}}<br>
+                                                            {{#if state.data.approvedForVaccination}}
+                                                                Approved By Doctor: yes
+                                                            {{else}}
+                                                                Approved By Doctor: no
+                                                            {{/if}}
+
+
 
 
 
