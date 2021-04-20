@@ -23,6 +23,10 @@ router.get('/', function(req, res, next) {
 
 });
 
+/************************************************************************************************
+ *                          Patient
+ ************************************************************************************************/
+
 router.get('/patient', function(req, res, next) {
     // req.session.username = 'Patient1';
     var data;
@@ -68,6 +72,10 @@ router.get('/patient', function(req, res, next) {
         });
     });
 });
+
+/************************************************************************************************
+ *                          Doctor
+ ************************************************************************************************/
 
 router.get('/doctor', function(req, res, next) {
     req.session.username = 'Doctor1';
@@ -116,9 +124,40 @@ router.get('/doctor', function(req, res, next) {
     });
 });
 
+router.get('/approvePatient/:firstName/:lastName', function(req, res, next) {
+    var firstName = req.params.firstName;
+    var lastName = req.params.lastName;
+    console.log(`insde of /approvePatient/${firstName}/${lastName}`);
+
+    axios.post('http://localhost:10050/approvePatient', {},
+        {params: {
+            firstName: firstName,
+            lastName: lastName,
+            username: req.session.username
+        }})
+        //Server  successful response
+        .then((response) => {
+            //console.log("inside axios post call");
+            //console.log(response[0].data);
+
+            console.log(response);
+
+            //console.log(req.session.username);
+            res.redirect('/dashboard');
+        })
+
+
+
+
+
+
+});
+
+
 /************************************************************************************************
- *                          FUNCTIONS/METHODS
+ *                          Clinic
  ************************************************************************************************/
+
 router.get('/clinic', function(req,res,next){
    // req.session.username = 'Clinic1';
     var data;
@@ -147,6 +186,10 @@ router.get('/clinic', function(req,res,next){
     });
 
 });
+
+/************************************************************************************************
+ *                          Employer
+ ************************************************************************************************/
 
 router.get('/employer', function(req,res,next){
    // req.session.username = 'Clinic1';
@@ -177,9 +220,15 @@ router.get('/employer', function(req,res,next){
 
 });
 
+
+
 router.get('/logout', function(req,res,next) {
     req.session.destroy();
     res.redirect('/login');
 });
+
+/************************************************************************************************
+ *                          FUNCTIONS/METHODS
+ ************************************************************************************************/
 
 module.exports = router;
