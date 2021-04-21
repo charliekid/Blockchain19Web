@@ -26,10 +26,17 @@
             <div class="col-md-6">
 <!--                <div class="approvalForm">-->
                 <div class="form-group">
-                    <input type="text" name="firstName" class="form-control" placeholder="Patient First Name *" value="" />
+                    <label for="doseNumberPicker">Select Dose Number</label>
+                    <select class="form-control" id="doseNumberPicker" name="doseNumberPicker">
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="lastName" class="form-control" placeholder="Patient Last Name *" value="" />
+                    <input type="text" name="firstName" class="form-control" placeholder="{{firstName}}" value="{{firstName}}" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="lastName" class="form-control" placeholder="{{lastName}}" value="{{lastName}}" />
                 </div>
                 <div class="form-group">
                     <input type="text" name="mfrName" class="form-control" placeholder="Vaccine Manufacturer *" value="" />

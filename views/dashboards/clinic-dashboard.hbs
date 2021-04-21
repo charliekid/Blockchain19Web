@@ -27,7 +27,7 @@
     <div class="row display-table-row">
         <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
             <div class="logo">
-                <a hef="#"><img src="https://raw.githubusercontent.com/charliekid/RandomPractice/master/idea2.png" class="w-30" class="hidden-xs hidden-sm center" >
+                <a hef="#"><img src="https://raw.githubusercontent.com/charliekid/Blockchain19Web/Charlie-Formatting/public/images/blockchain19_logo.png" class="w-30" class="hidden-xs hidden-sm center" >
                 </a>
             </div>
             <div class="navi">
@@ -71,7 +71,7 @@
                                                 </p>
                                                 <div class="divider">
                                                 </div>
-                                                <a href="/login" class="view btn-sm active">Logout</a>
+                                                <a href="/dashboard/logout" class="view btn-sm active">Logout</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -99,16 +99,16 @@
 
                                             <!--                                        <a href="#" class="card-link">More</a>-->
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transactionModal">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transactionModal{{state.data.firstName}}{{state.data.lastName}}">
                                                 More
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="transactionModal{{state.data.firstName}}{{state.data.lastName}}" tabindex="-1" role="dialog" aria-labelledby="transactionModalLabel{{state.data.firstName}}{{state.data.lastName}}" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="transactionModalLabel">Patient:</h5>
+                                                            <h5 class="modal-title" id="transactionModalLabel{{state.data.firstName}}{{state.data.lastName}}">Patient:</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
@@ -124,14 +124,17 @@
                                                             2nd Dose Date: {{state.data.secondDoseDate}}<br>
 
                                                             {{#if state.data.approvedForVaccination}}
-                                                                approved: yes
+                                                                approved by doctor: yes
                                                             {{else}}
-                                                                approved: no
+                                                                approved by doctor: no
                                                             {{/if}}
 
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="submit" formaction="/clinicAdmin" class="btn btn-secondary" data-dismiss="modal">Approve</button>
+                                                            {{#if state.data.approvedForVaccination}}
+<!--                                                                <button type="submit" formaction="/clinicAdmin" class="btn btn-secondary" data-dismiss="modal">Approve</button>-->
+                                                                <a href="/clinicAdmin/{{state.data.firstName}}/{{state.data.lastName}}" class="view btn-sm active">Add Vaccine Info</a>
+                                                            {{/if}}
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
