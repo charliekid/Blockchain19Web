@@ -104,6 +104,7 @@
                                             </button>
 
                                             <!-- Modal -->
+                                            <form >
                                             <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -114,14 +115,22 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            First Name: {{state.data.firstName}} <br>
-                                                            Last Name: {{state.data.lastName}} <br>
-                                                            Total Doses: {{state.data.dose}} <br>
-                                                            Manfacturer: {{state.data.firstDoseManufacturer}} <br>
-                                                            1st Dose Lot: {{state.data.firstDoseLot}}<br>
-                                                            1st Dose Date: {{state.data.firstDoseDate}}<br>
-                                                            2nd Dose Lot: {{state.data.secondDoseLot}}<br>
-                                                            2nd Dose Date: {{state.data.secondDoseDate}}<br>
+<!--                                                            <p name="firstName"></p>-->
+<!--                                                            <p name="lastName"></p>-->
+<!--                                                            <p name="dose"></p>-->
+<!--                                                            <p name="mfrName"></p>-->
+<!--                                                            <p name="firstDoseLot"> </p>-->
+<!--                                                            <p name="firstDoseDate"></p>-->
+<!--                                                            <p name="secDoseLot"> </p>-->
+<!--                                                            <p name="secDoseDate"></p>-->
+                                                            First Name:{{state.data.firstName}}
+                                                            Last Name:{{state.data.lastName}}
+                                                            Total Doses:{{state.data.dose}}
+                                                            Manufacturer Name:{{state.data.firstDoseManufacturer}}
+                                                            1st Dose Lot:{{state.data.firstDoseLot}}
+                                                            1st Dose Date:{{state.data.firstDoseDate}}
+                                                            2nd Dose Lot:{{state.data.secondDoseLot}}
+                                                            2nd Dose Date:{{state.data.secondDoseDate}}
 
                                                             {{#if state.data.approvedForVaccination}}
                                                                 approved: yes
@@ -131,12 +140,14 @@
 
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="submit" formaction="/clinicAdmin" class="btn btn-secondary" data-dismiss="modal">Approve</button>
+<!--                                                            <button type="submit" formaction="/clinicAdmin" class="btn btn-secondary" data-dismiss="modal">Approve</button>-->
+                                                            <a type="button"  href="/clinicAdmin">Approve
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            </form>
                                         </h6>
                                         <p class="card-text"></p>
 

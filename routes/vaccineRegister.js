@@ -18,6 +18,7 @@ router.post('/', function(req,res,next){
     var first = req.body.firstName;
     var last = req.body.lastName;
     var dose = 0;
+    //var
     req.session.username = "Patient1";
 
     console.log("This is the session username: " + req.session.username);
