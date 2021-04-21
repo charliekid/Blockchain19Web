@@ -99,16 +99,16 @@
                                             doses: {{state.data.dose}} <br>
                                             <!--                                        <a href="#" class="card-link">More</a>-->
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transactionModal">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transactionModal{{state.data.firstName}}{{state.data.lastName}}">
                                                 More
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="transactionModal{{state.data.firstName}}{{state.data.lastName}}" tabindex="-1" role="dialog" aria-labelledby="transactionModalLabel{{state.data.firstName}}{{state.data.lastName}}" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="transactionModalLabel">Tranasction:</h5>
+                                                            <h5 class="modal-title" id="transactionModalLabel{{state.data.firstName}}{{state.data.lastName}}">Tranasction:</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>

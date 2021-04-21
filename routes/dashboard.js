@@ -52,7 +52,7 @@ router.get('/patient', function(req, res, next) {
                     }
                 }
                 // console.log("count :" + count);
-                // console.log(json.data);
+                // console.log(json.data[0].ref.txhash);
                 // console.log("first name is :" + json.data[0].state.data.firstName);
 
 
