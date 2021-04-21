@@ -27,7 +27,7 @@
     <div class="row display-table-row">
         <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
             <div class="logo">
-                <a hef="#"><img src="https://raw.githubusercontent.com/charliekid/RandomPractice/master/idea2.png" class="w-30" class="hidden-xs hidden-sm center" >
+                <a hef="#"><img src="https://raw.githubusercontent.com/charliekid/Blockchain19Web/Charlie-Formatting/public/images/blockchain19_logo.png" class="w-30" class="hidden-xs hidden-sm center" >
                 </a>
             </div>
             <div class="navi">
@@ -71,7 +71,7 @@
                                                 </p>
                                                 <div class="divider">
                                                 </div>
-                                                <a href="/login" class="view btn-sm active">Logout</a>
+                                                <a href="/dashboard/logout" class="view btn-sm active">Logout</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -104,7 +104,6 @@
                                             </button>
 
                                             <!-- Modal -->
-                                            <form >
                                             <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -115,22 +114,14 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-<!--                                                            <p name="firstName"></p>-->
-<!--                                                            <p name="lastName"></p>-->
-<!--                                                            <p name="dose"></p>-->
-<!--                                                            <p name="mfrName"></p>-->
-<!--                                                            <p name="firstDoseLot"> </p>-->
-<!--                                                            <p name="firstDoseDate"></p>-->
-<!--                                                            <p name="secDoseLot"> </p>-->
-<!--                                                            <p name="secDoseDate"></p>-->
-                                                            First Name:{{state.data.firstName}}
-                                                            Last Name:{{state.data.lastName}}
-                                                            Total Doses:{{state.data.dose}}
-                                                            Manufacturer Name:{{state.data.firstDoseManufacturer}}
-                                                            1st Dose Lot:{{state.data.firstDoseLot}}
-                                                            1st Dose Date:{{state.data.firstDoseDate}}
-                                                            2nd Dose Lot:{{state.data.secondDoseLot}}
-                                                            2nd Dose Date:{{state.data.secondDoseDate}}
+                                                            First Name: {{state.data.firstName}} <br>
+                                                            Last Name: {{state.data.lastName}} <br>
+                                                            Total Doses: {{state.data.dose}} <br>
+                                                            Manfacturer: {{state.data.firstDoseManufacturer}} <br>
+                                                            1st Dose Lot: {{state.data.firstDoseLot}}<br>
+                                                            1st Dose Date: {{state.data.firstDoseDate}}<br>
+                                                            2nd Dose Lot: {{state.data.secondDoseLot}}<br>
+                                                            2nd Dose Date: {{state.data.secondDoseDate}}<br>
 
                                                             {{#if state.data.approvedForVaccination}}
                                                                 approved: yes
@@ -140,14 +131,15 @@
 
                                                         </div>
                                                         <div class="modal-footer">
-<!--                                                            <button type="submit" formaction="/clinicAdmin" class="btn btn-secondary" data-dismiss="modal">Approve</button>-->
-                                                            <a type="button"  href="/clinicAdmin">Approve
+                                                            {{#if state.data.approvedForVaccination}}
+<!--                                                                <button type="submit" formaction="/clinicAdmin" class="btn btn-secondary" data-dismiss="modal">Approve</button>-->
+                                                                <a href="/clinicAdmin/{{state.data.firstName}}/{{state.data.lastName}}" class="view btn-sm active">Add Vaccine Info</a>
+                                                            {{/if}}
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            </form>
                                         </h6>
                                         <p class="card-text"></p>
 

@@ -72,7 +72,7 @@
                                                 </p>
                                                 <div class="divider">
                                                 </div>
-                                                <a href="/login" class="view btn-sm active">Logout</a>
+                                                <a href="/dashboard/logout" class="view btn-sm active">Logout</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -126,7 +126,10 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Approve Patient</button>
+<!--                                                            <form action="/dashboard/approvePatient/{{state.data.firstName}}/{{state.data.lastName}}" method="POST">-->
+<!--                                                            <button type="button" class="btn btn-primary">Approve Patient</button>-->
+                                                            <a href="/dashboard/approvePatient/{{state.data.firstName}}/{{state.data.lastName}}" class="view btn-sm active">Approve Patient</a>
+<!--                                                            </form>-->
                                                         </div>
                                                     </div>
                                                 </div>
