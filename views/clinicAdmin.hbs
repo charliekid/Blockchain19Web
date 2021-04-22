@@ -7,7 +7,22 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
     <link rel="stylesheet" type="text/css" href="/stylesheets/clinicAdminStyle.css" />
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <script type="text/javascript">
+        function displaySecondDoseInput(choice){
+            if(choice.value == 1){
+                document.getElementById('hidefirstDose').style.display = "block";
+                document.getElementById('hidesecondDose').style.display = "none";
 
+            }
+            else if(choice.value == 2){
+                document.getElementById('hidefirstDose').style.display = "none";
+                document.getElementById('hidesecondDose').style.display = "block";
+
+            }
+          }
+    </script>
+<!--    <script src="/clinicAdmin.js"></script>-->
 </head>
 
 <body>
@@ -27,9 +42,9 @@
 <!--                <div class="approvalForm">-->
                 <div class="form-group">
                     <label for="doseNumberPicker">Select Dose Number</label>
-                    <select class="form-control" id="doseNumberPicker" name="doseNumberPicker">
-                        <option>1</option>
-                        <option>2</option>
+                    <select class="form-control" id="doseNumberPicker" name="doseNumberPicker" onchange="displaySecondDoseInput(this)">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -39,20 +54,30 @@
                     <input type="text" name="lastName" class="form-control" placeholder="{{lastName}}" value="{{lastName}}" />
                 </div>
                 <div class="form-group">
-                    <input type="text" name="mfrName" class="form-control" placeholder="Vaccine Manufacturer *" value="" />
+                    <label for="vaccineMfr">Select Vaccine Manufacturer</label>
+                    <select class="form-control" id="vaccineMfr" name="mfrName" >
+                        <option value="moderna">Moderna</option>
+                        <option value="pfizer">Pfizer</option>
+                    </select>
                 </div>
+                <div id="hidefirstDose">
                 <div class="form-group">
                     <input type="text" name="dateOne" class="form-control" placeholder="Vaccine 1 Date *" value="" />
                 </div>
                 <div class="form-group">
                     <input type="text" name="lotNumberOne" class="form-control" placeholder="Vaccine 1 Lot # *" value="" />
                 </div>
-                <div class="form-group">
-                    <input type="text" name="dateTwo" class="form-control" placeholder="Vaccine 2 Date *" value="" />
                 </div>
-                <div class="form-group">
-                    <input type="text" name="lotNumberTwo" class="form-control" placeholder="Vaccine 2 Lot # *" value="" />
+                <div id="hidesecondDose" style="display:none">
+                    <div class="form-group">
+                        <input type="text" name="dateTwo" class="form-control" placeholder="Vaccine 2 Date *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="lotNumberTwo" class="form-control" placeholder="Vaccine 2 Lot # *" value="" />
+                    </div>
                 </div>
+
+
                 <div class="form-group">
                     <input type="submit" name="btnSubmit" class="btnContact" value="Send Approval" />
                 </div>
