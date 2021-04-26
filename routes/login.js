@@ -31,6 +31,8 @@ router.post('/', async function(req, res, next) {
     } else {
         console.log("inccorect log in");
         // TODO : redirect to log in page saying that password and username is incorrect
+        res.redirect('/login');
+        //alert("Incorrect username or password");
     }
 
 });

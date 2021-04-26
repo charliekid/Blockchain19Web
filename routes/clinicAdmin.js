@@ -65,7 +65,9 @@ router.post('/', function(req,res,next){
 
     })
     .then((response)=>{
+        //console.log("before response");
         console.log(response);
+        //console.log("response should be showing up");
         res.redirect('dashboard/clinic');
     })
 
