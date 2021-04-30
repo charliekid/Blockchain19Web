@@ -109,6 +109,14 @@ router.post('/', function(req,res,next){
             },
             withCredentials: true
 
+   // })
+   // .then((response)=>{
+        //console.log("before response");
+   //     console.log(response);
+        //console.log("response should be showing up");
+   //     res.redirect('dashboard/clinic');
+  //  })
+
         })
         .then((response)=>{
             console.log(response);
@@ -129,6 +137,7 @@ router.post('/', function(req,res,next){
                         doseNumber: doseNumber
             },
             withCredentials: true
+
 
         })
         .then((response)=>{
