@@ -21,6 +21,7 @@ router.get('/:firstName/:lastName', function(req, res, next) {
             var data;
             var json;
             var result;
+            console.log("We are in the http.get()");
             resp.on("data", (information) => {
                 data += information;
             });
@@ -30,6 +31,7 @@ router.get('/:firstName/:lastName', function(req, res, next) {
                     var substring = data.substr(9, data.length);
                     substring = substring.replaceAll("@", "");
                     json = JSON.parse(substring);
+                    console.log("We just finished parsing");
 
                     numberOfDose = json.data[0].state.data.dose;
 
@@ -41,6 +43,24 @@ router.get('/:firstName/:lastName', function(req, res, next) {
                         firstManufacturer = json.data[0].state.data.firstDoseManufacturer;
                         myResolve(numberOfDose);
                     }
+                    console.log("After the end of the try" + numberOfDose);
+                    if(numberOfDose > 0 ) {
+                        res.render('clinicAdmin',
+                            {
+                                firstName: req.params.firstName,
+                                lastName: req.params.lastName,
+                                firstDate: firstDate,
+                                firstLot: firstLot
+                            });
+                        // If there aren't any doses
+                    } else {
+                        res.render('clinicAdmin',
+                            {
+                                firstName: req.params.firstName,
+                                lastName: req.params.lastName
+                            });
+                    }
+
 
                 } catch (error) {
                     console.error(error);
@@ -51,34 +71,37 @@ router.get('/:firstName/:lastName', function(req, res, next) {
         });
     });
     // Once we get the information needed we will render accordingly
-    myPromise.then(
-        function(value) {
-            // If there is one dose already received.
-            if(value > 0 ) {
-                res.render('clinicAdmin',
-                    {
-                        firstName: req.params.firstName,
-                        lastName: req.params.lastName,
-                        firstDate: firstDate,
-                        firstLot: firstLot
-                    });
-            // If there aren't any doses
-            } else {
-                res.render('clinicAdmin',
-                    {
-                        firstName: req.params.firstName,
-                        lastName: req.params.lastName
-                    });
-            }
-        },
-        function(error) {
-            console.log("We have an error in the myPromise in the get of clinicAdmin.js");
-        }
-    );
+    // console.log("right beforet he promise then");
+    // myPromise.then(
+    //     function(value) {
+    //         console.log("now in the .then part and value is " + value);
+    //         // If there is one dose already received.
+    //         if(value > 0 ) {
+    //             res.render('clinicAdmin',
+    //                 {
+    //                     firstName: req.params.firstName,
+    //                     lastName: req.params.lastName,
+    //                     firstDate: firstDate,
+    //                     firstLot: firstLot
+    //                 });
+    //         // If there aren't any doses
+    //         } else {
+    //             res.render('clinicAdmin',
+    //                 {
+    //                     firstName: req.params.firstName,
+    //                     lastName: req.params.lastName
+    //                 });
+    //         }
+    //     },
+    //     function(error) {
+    //         console.log("We have an error in the myPromise in the get of clinicAdmin.js");
+    //     }
+    // );
 });
 
 //Post request to send vaccine info to Spring controller
 router.post('/', function(req,res,next){
+    console.log("inside of the post of clinicAdmin.js")
     var data = req.body;
     var firstName = data.firstName;
     var lastName = data.lastName;
