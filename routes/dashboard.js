@@ -27,21 +27,27 @@ router.get('/', function(req, res, next) {
  *                          Patient
  ************************************************************************************************/
 
+/**
+ * Gets the dashboard home page for Patient accounts. This method also uses an http.get() in order
+ * to retrieve the patient's transaction from the Corda Nodes.
+ * By Charlie Nguyen
+ */
 router.get('/patient', function(req, res, next) {
-    // req.session.username = 'Patient1';
+
     var data;
     var json;
 
+    // Getting the list of patient transactions
     http.get("http://localhost:10050/transaction/list/"+req.session.username, (resp) => {
         resp.on("data", (information) => {
             data += information;
         });
         resp.on("end", () => {
             try {
-                //console.log("data length = [" + data.length + "]");
+                // Data comes in weirdly so adjusting the string so that we can
+                // store it into a json file
                 var substring = data.substr(9, data.length);
                 substring = substring.replaceAll("@", "");
-                // console.log("\nsubstring = " + substring);
                 json = JSON.parse(substring);
 
                 // checks to see if we got any data or not.
@@ -51,24 +57,17 @@ router.get('/patient', function(req, res, next) {
                         count++;
                     }
                 }
-                // console.log("count :" + count);
-                // console.log(json.data[0].state.data.firstDoseDate);
-                // console.log("first name is :" + json.data[0].state.data.firstName);
 
-
-                res.render('dashboards/patient-dashboard', {transactions : json.data, PartyName: req.session.username});
-                // res.render('dashboard', {PartyName : req.session.username,
-                //                             firstName:json.data[0].state.data.firstName,
-                //                             lastName:json.data[0].state.data.lastName,
-                //                             dose:json.data[0].state.data.dose
-                //
-                // });
+                // Render the page
+                res.render('dashboards/patient-dashboard', {
+                    transactions : json.data,
+                    PartyName: req.session.username});
 
             } catch (error) {
                 console.error(error);
                 console.error("error within dashboard.js/get/http.get/resp.on(end)");
             };
-            //console.log(data);
+
         });
     });
 });
@@ -76,23 +75,28 @@ router.get('/patient', function(req, res, next) {
 /************************************************************************************************
  *                          Doctor
  ************************************************************************************************/
-
+/**
+ * Gets the dashboard home page for Doctor account. This method also uses an http.get() in order
+ * to retrieve the doctor's transaction from the Corda Nodes.
+ * By Charlie Nguyen
+ */
 router.get('/doctor', function(req, res, next) {
     req.session.username = 'Doctor1';
 
     var data;
     var json;
 
+    // Getting the list of doctor transactions
     http.get("http://localhost:10050/transaction/list/"+req.session.username, (resp) => {
         resp.on("data", (information) => {
             data += information;
         });
         resp.on("end", () => {
             try {
-                //console.log("data length = [" + data.length + "]");
+                // Data comes in weirdly so adjusting the string so that we can
+                // store it into a json file
                 var substring = data.substr(9, data.length);
                 substring = substring.replaceAll("@", "");
-                // console.log("\nsubstring = " + substring);
                 json = JSON.parse(substring);
 
                 // checks to see if we got any data or not.
@@ -102,32 +106,28 @@ router.get('/doctor', function(req, res, next) {
                         count++;
                     }
                 }
-                // console.log("count :" + count);
-                // console.log(json.data);
-                // console.log("first name is :" + json.data[0].state.data.firstName);
 
-
-                res.render('dashboards/doctor-dashboard', {transactions : json.data, PartyName: req.session.username});
-                // res.render('dashboard', {PartyName : req.session.username,
-                //                             firstName:json.data[0].state.data.firstName,
-                //                             lastName:json.data[0].state.data.lastName,
-                //                             dose:json.data[0].state.data.dose
-                //
-                // });
+                // Render the page
+                res.render('dashboards/doctor-dashboard', {
+                    transactions : json.data,
+                    PartyName: req.session.username});
 
             } catch (error) {
                 console.error(error);
                 console.error("error within dashboard.js/get/http.get/resp.on(end)");
             };
-            //console.log(data);
         });
     });
 });
 
+/**
+ * This will communicate with the Controller on the Corda Java project. This will submit a patient's information
+ * for approval.
+ * By Charlie Nguyen
+ */
 router.get('/approvePatient/:firstName/:lastName', function(req, res, next) {
     var firstName = req.params.firstName;
     var lastName = req.params.lastName;
-    console.log(`insde of /approvePatient/${firstName}/${lastName}`);
 
     axios.post('http://localhost:10050/approvePatient', {},
         {params: {
@@ -137,52 +137,45 @@ router.get('/approvePatient/:firstName/:lastName', function(req, res, next) {
         }})
         //Server  successful response
         .then((response) => {
-            //console.log("inside axios post call");
-            //console.log(response[0].data);
-
-            console.log(response);
-
-            //console.log(req.session.username);
             res.redirect('/dashboard');
         })
-
-
-
-
-
-
 });
 
 
 /************************************************************************************************
  *                          Clinic
  ************************************************************************************************/
-
+/**
+ * Gets the dashboard home page for Clinic accounts. This method also uses an http.get() in order
+ * to retrieve the clnic's transaction from the Corda Nodes.
+ * By Charlie Nguyen
+ */
 router.get('/clinic', function(req,res,next){
-   // req.session.username = 'Clinic1';
     var data;
     var json;
+
+    // Getting the list of ClinicAdmin transactions
     http.get("http://localhost:10050/transaction/list/"+req.session.username,(resp)=>{
         resp.on("data", (information) => {
-          data += information;
+            data += information;
         });
         resp.on("end", ()=>{
-          try{
-            var substring = data.substr(9, data.length);
-            substring = substring.replaceAll("@", "");
-            // console.log("\nsubstring = " + substring);
-            json = JSON.parse(substring);
+            try{
+              // Data comes in weirdly so adjusting the string so that we can
+              // store it into a json file
+                var substring = data.substr(9, data.length);
+                substring = substring.replaceAll("@", "");
+                json = JSON.parse(substring);
 
-            // console.log(json.data);
-
-            res.render('dashboards/clinic-dashboard', {transactions : json.data, PartyName: req.session.username});
-          }
-          catch(err){
-            console.log(err);
-          }
+            res.render('dashboards/clinic-dashboard', {
+                transactions : json.data,
+                PartyName: req.session.username});
+            }
+            catch(err){
+                console.log(err);
+            }
 
         });
-
     });
 
 });
@@ -190,36 +183,39 @@ router.get('/clinic', function(req,res,next){
 /************************************************************************************************
  *                          Employer
  ************************************************************************************************/
-
+/**
+ * Gets the dashboard home page for employer accounts. This method also uses an http.get() in order
+ * to retrieve the employer's transaction from the Corda Nodes.
+ * By Charlie Nguyen
+ */
 router.get('/employer', function(req,res,next){
-   // req.session.username = 'Clinic1';
+
     var data;
     var json;
+
+    // Getting the list of patients transactions
     http.get("http://localhost:10050/transaction/list/"+req.session.username,(resp)=>{
         resp.on("data", (information) => {
-          data += information;
+            data += information;
         });
         resp.on("end", ()=>{
-          try{
-            var substring = data.substr(9, data.length);
-            substring = substring.replaceAll("@", "");
-            // console.log("\nsubstring = " + substring);
-            json = JSON.parse(substring);
+            try{
+                // Data comes in weirdly so adjusting the string so that we can
+                // store it into a json file
+                var substring = data.substr(9, data.length);
+                substring = substring.replaceAll("@", "");
+                json = JSON.parse(substring);
 
-            // console.log(json.data);
-
-            res.render('dashboards/employer-dashboard', {transactions : json.data, PartyName: req.session.username});
-          }
-          catch(err){
-            console.log(err);
-          }
-
+                res.render('dashboards/employer-dashboard', {
+                    transactions : json.data,
+                    PartyName: req.session.username});
+            }
+                catch(err){
+                console.log(err);
+            }
         });
-
     });
-
 });
-
 
 
 router.get('/logout', function(req,res,next) {
