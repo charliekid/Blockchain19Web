@@ -222,6 +222,7 @@ router.get('/employer', function(req,res,next){
 
 
 router.get('/logout', function(req,res,next) {
+    //req.logout();
     req.session.destroy();
     res.redirect('/login');
 });
