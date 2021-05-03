@@ -27,22 +27,21 @@
     <div class="row display-table-row">
         <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
             <div class="logo">
-                <a hef="#"><img src="https://raw.githubusercontent.com/charliekid/Blockchain19Web/Charlie-Formatting/public/images/blockchain19_logo.png" class="w-30" class="hidden-xs hidden-sm center" >
+                <a hef="home.html"><img src="https://raw.githubusercontent.com/charliekid/Blockchain19Web/Charlie-Formatting/public/images/blockchain19_logo.png" class="w-30" class="hidden-xs hidden-sm center" >
                 </a>
             </div>
             <div class="navi">
                 <ul>
                     <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                    <!--                    <li><a href="/clinicAdmin"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Transactions</span></a></li>-->
-                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Tab 1</span></a></li>
+                    <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Transactions</span></a></li>
+                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Create Transaction</span></a></li>
+                    <li><a href="/vaccineRegister"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Register for Vaccine</span></a></li>
                 </ul>
             </div>
         </div>
         <div class="col-md-10 col-sm-11 display-table-cell v-align">
-            <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
             <div class="row">
                 <header>
-                    <!--                    <div class="col-md-7">-->
                     <nav class="navbar-default pull-left">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
@@ -54,7 +53,6 @@
                         </div>
                     </nav>
 
-                    <!--                    </div>-->
                     <div class="col-md-5">
                         <div class="header-rightside">
                             <ul class="list-inline header-top pull-right">
@@ -89,14 +87,18 @@
                             {{#each transactions}}
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body">
-                                        <h5 class="card-title">Employee</h5>
+                                        <h5 class="card-title">{{state.data.firstName}} {{state.data.lastName}}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">
-
-                                            First Name: {{state.data.firstName}} <br>
-                                            Last Name: {{state.data.lastName}} <br>
-
-
-                                            <!--                                        <a href="#" class="card-link">More</a>-->
+                                            {{#if state.data.approvedForVaccination}}
+                                                Doctor Approval: yes <br>
+                                            {{else}}
+                                                Doctor Approval: no <br>
+                                            {{/if}}
+                                            {{#if state.data.vaccinationProcessComplete}}
+                                                Vaccination Completed: yes
+                                            {{else}}
+                                                Vaccination Completed: no
+                                            {{/if}}
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transactionModal{{state.data.firstName}}{{state.data.lastName}}">
                                                 More
@@ -107,7 +109,7 @@
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="transactionModalLabel{{state.data.firstName}}{{state.data.lastName}}">Patient:</h5>
+                                                            <h5 class="modal-title" id="transactionModalLabel{{state.data.firstName}}{{state.data.lastName}}">Tranasction:</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
@@ -115,24 +117,33 @@
                                                         <div class="modal-body">
                                                             First Name: {{state.data.firstName}} <br>
                                                             Last Name: {{state.data.lastName}} <br>
-                                                            Total Doses: {{state.data.dose}} <br>
-                                                            Manfacturer: {{state.data.firstDoseManufacturer}} <br>
-                                                            1st Dose Date: {{state.data.firstDoseDate}}<br>
-                                                            2nd Dose Date: {{state.data.secondDoseDate}}<br>
+                                                            Doses: {{state.data.dose}} <br>
                                                             {{#if state.data.approvedForVaccination}}
-                                                                Approved By Doctor: yes
+                                                                Doctor Approval: yes <br>
                                                             {{else}}
-                                                                Approved By Doctor: no
+                                                                Doctor Approval: no <br>
+                                                            {{/if}}
+                                                            {{#if state.data.vaccinationProcessComplete}}
+                                                                Vaccination Completed: yes <br>
+                                                            {{else}}
+                                                                Vaccination Completed: no <br>
                                                             {{/if}}
 
+                                                            {{#if state.data.dose}}
+                                                                <br>Dose Manufacturer : {{state.data.firstDoseManufacturer}} <br>
+                                                                1st Dose Date: {{state.data.firstDoseDate}}<br>
+                                                                1st Dose Lot: {{state.data.firstDoseLot}}<br>
 
-
-
+                                                                <br> 2nd Dose Date {{state.data.secondDoseDate}}<br>
+                                                                2nd Dose Lot: {{state.data.secondDoseLot}}<br>
+                                                            {{/if}}
 
                                                         </div>
                                                         <div class="modal-footer">
-<!--                                                            <button type="submit" formaction="/clinicAdmin" class="btn btn-secondary" data-dismiss="modal">Approve</button>-->
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                                            <!--if the patient is already approved we don't need the approve button-->
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -147,21 +158,7 @@
                             <h2> No transactions</h2>
                             <h2> {{transactions}}</h2>
                         {{/if}}
-
-
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span>Period:</span> Last Year
-                            </button>
-                            <div class="dropdown-menu">
-                                <a href="#">2012</a>
-                                <a href="#">2014</a>
-                                <a href="#">2015</a>
-                                <a href="#">2016</a>
-                            </div>
-                        </div>
                     </div>
-                    <!--                    </div>-->
                 </div>
             </div>
         </div>
