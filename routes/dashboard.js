@@ -30,7 +30,6 @@ router.get('/', function(req, res, next) {
 /**
  * Gets the dashboard home page for Patient accounts. This method also uses an http.get() in order
  * to retrieve the patient's transaction from the Corda Nodes.
- * By Charlie Nguyen
  */
 router.get('/patient', function(req, res, next) {
 
@@ -78,11 +77,8 @@ router.get('/patient', function(req, res, next) {
 /**
  * Gets the dashboard home page for Doctor account. This method also uses an http.get() in order
  * to retrieve the doctor's transaction from the Corda Nodes.
- * By Charlie Nguyen
  */
 router.get('/doctor', function(req, res, next) {
-    req.session.username = 'Doctor1';
-
     var data;
     var json;
 
@@ -123,7 +119,6 @@ router.get('/doctor', function(req, res, next) {
 /**
  * This will communicate with the Controller on the Corda Java project. This will submit a patient's information
  * for approval.
- * By Charlie Nguyen
  */
 router.get('/approvePatient/:firstName/:lastName', function(req, res, next) {
     var firstName = req.params.firstName;
@@ -148,7 +143,6 @@ router.get('/approvePatient/:firstName/:lastName', function(req, res, next) {
 /**
  * Gets the dashboard home page for Clinic accounts. This method also uses an http.get() in order
  * to retrieve the clnic's transaction from the Corda Nodes.
- * By Charlie Nguyen
  */
 router.get('/clinic', function(req,res,next){
     var data;
@@ -186,7 +180,6 @@ router.get('/clinic', function(req,res,next){
 /**
  * Gets the dashboard home page for employer accounts. This method also uses an http.get() in order
  * to retrieve the employer's transaction from the Corda Nodes.
- * By Charlie Nguyen
  */
 router.get('/employer', function(req,res,next){
 
