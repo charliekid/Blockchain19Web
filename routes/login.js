@@ -11,42 +11,58 @@ var authTokens = {};
  *                          GET/POST/PUT/CREATE etc
  ************************************************************************************************/
 
-/* GET home page. */
+/**
+ * Gets home login page
+ */
 router.get('/', function(req, res, next) {
     res.render('login');
 });
 
 
+/**
+ * POST for login. This will grab the information inputted into the login form.
+ * Then it will be hashed and verified through verifyLogin() function and passed back
+ * to login.hbs. If the username does not exist in our database, it will return null
+ * By Charlie Nguyen
+ */
 router.post('/', async function(req, res, next) {
+
+    // Variables that will be passed back to login.hbs by the ajax call
     let successful = false;
     let message = '';
-    hashedUsername = hashSha256(req.body.username);
-    hashedPassword = hashSha256(req.body.password);
+
+    // Variables so we can verify login information
+    let hashedUsername = hashSha256(req.body.username);
+    let hashedPassword = hashSha256(req.body.password);
+
+    // We await a promise to be done
     let dbResult = await verifyLogin(hashedUsername, hashedPassword, req.body.accountTypeSelection);
-    // this means we got some data
-    if(dbResult != null) {
-        console.log("dbresult:" + dbResult);
+
+    // Once we verify the login information, we will pass back to our ajax call the information needed
+    if (dbResult != null) {
+        successful = true;
         req.session.username = dbResult;
-        res.redirect('/dashboard');
-    } else {
-        console.log("inccorect log in");
-        // TODO : redirect to log in page saying that password and username is incorrect
-        //res.redirect('/login');
-        //alert("Incorrect username or password");
-        res.render('login',{
-                            message: "Incorrect username or password",
-                            messageClass: 'alert-danger'
-                        });
+    }
+    else {
+        // delete the user as punishment!
+        delete req.session.username;
+        message = 'Wrong username or password!'
     }
 
+    // Passing it back to the AJAX call in login.hbs
+    res.json({
+        successful: successful,
+        message: message
+    });
+
+
 });
-
-
 /************************************************************************************************
  *                          FUNCTIONS/METHODS
  ************************************************************************************************/
 
 /**
+ * TODO: JORGE create description
  * Created by Jorge
  * @param password
  * @returns {string}
@@ -58,6 +74,7 @@ function getHashedPassword(password) {
 }
 
 /**
+ * TODO: JORGE create description
  * Created by Jorge
  * @returns {string}
  */
@@ -76,17 +93,15 @@ function hashSha256(stringToBeHashed) {
     return hashed;
 }
 
-//function logout(){
-//
-//}
+
 
 /**
- * Used to verify user login information against a specifed database.
+ * Used to verify user login information against a speicifed database.
  *  Created by Charlie
  * @param hashedUsername
  * @param hashedPassword
  * @param partyType
- * @returns the Party's unique id if the SQL query is sucessful. Otherwise it will return null.
+ * @returns the Party's unique id if the SQL query is successful. Otherwise it will return null.
  */
 function verifyLogin(hashedUsername, hashedPassword, partyType) {
     // Our SQL query we will use

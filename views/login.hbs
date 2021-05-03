@@ -35,7 +35,7 @@
 
         </div>
         <div class="card-body">
-            <form action="/login"  method="post" >
+            <form>
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -66,15 +66,15 @@
                     </div>
                 </div>
 
-                <div class="form-group" id="submitBtn">
+                <div class="form-group" id="loginButton">
                     <input type="submit" name="btn" value="Login" class="btn btn-outline-danger  login_btn">
                 </div>
+                <div id="message" class="alert alert-danger hidden m-2" role="alert">
+                    This is a danger alert—check it out!
+                </div>
+
 
             </form>
-            <div class="registerContainer">
-                {{!--    <button type="submit" id="registerBtn" >Register</button> --}}
-                <a  href="/registration" >Register</a>
-            </div>
         </div>
     </div>
 </div>
@@ -83,12 +83,20 @@
 
 </body>
 <script>
-
+    // The following is done by Charlie Nguyen
     $(document).ready(function() {
+        // hides the message that says "This is a danger alert—check it out!"
         $('#message').hide();
+
+        // When the login button is clicked we are gonna use ajax that way if
+        // the user inputs incorrect username and password it will alert the
+        // user that, that has occured
         $('#loginButton').on('click', function(e) {
             // Do not submit until I am ready
             e.preventDefault();
+            // This calls our login.js and goes to the post call.
+            // It gives to the login.js the username, password, accountType
+            // that way the post call can process the login information
             $.ajax({
                 type: "POST",
                 url: "/login",
@@ -97,8 +105,10 @@
                 data: JSON.stringify({
                     // we should prolly hash this
                     "username": $("#username").val(),
-                    "password": $("#password").val()
+                    "password": $("#password").val(),
+                    "accountTypeSelection": $("#accountTypeSelection").val()
                 }),
+                // If the login verification is a success do the following
                 success: function(result, status) {
                     console.log("got login status back", result);
                     if (result.successful) {
@@ -114,7 +124,9 @@
                         $('#message').show();
                     }
                 },
+                // If the login verification is failed do that following
                 error: function(xhr, status, error) {
+                    console.log("We got an error! in login.hbs ajax");
                     err = eval("error: (" + xhr.responseText + ")");
                     console.error(err);
                 },
