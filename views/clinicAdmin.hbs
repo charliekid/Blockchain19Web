@@ -34,12 +34,12 @@
     </div>
 
     <form action="/clinicAdmin" method="post">
-<!--        <h3>Drop Us a Message</h3>-->
+        <!--        <h3>Drop Us a Message</h3>-->
 
         <div class="row">
 
             <div class="col-md-6">
-<!--                <div class="approvalForm">-->
+                <!--                <div class="approvalForm">-->
                 <div class="form-group">
                     <label for="doseNumberPicker">Select Dose Number</label>
                     <select class="form-control" id="doseNumberPicker" name="doseNumberPicker" onchange="displaySecondDoseInput(this)">
@@ -60,75 +60,55 @@
                         <option value="pfizer">Pfizer</option>
                     </select>
                 </div>
-
-<!--                <div id="hidefirstDose">-->
-<!--                <div class="form-group">-->
-<!--                    <p>Format Required: yyyy-MM-dd</p> <br>-->
-<!--                    <input type="text" name="dateOne" class="form-control" placeholder="Vaccine 1 Date *" value=""  required/>-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <input type="text" name="lotNumberOne" class="form-control" placeholder="Vaccine 1 Lot # *" value="" required/>-->
-<!--                </div>-->
-<!--                </div>-->
-<!--                <div id="hidesecondDose" style="display:none">-->
-<!--                    <div class="form-group">-->
-<!--                        <p>Format Required: yyyy-MM-dd</p>-->
-<!--                        <input type="text" name="dateTwo" class="form-control" placeholder="Vaccine 2 Date *" value="" required/>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <input type="text" name="lotNumberTwo" class="form-control" placeholder="Vaccine 2 Lot # *" value="" required/>-->
-
                 <!--                This is for if there is a first dose present it will auto fill for the clinic admin-->
                 {{#if firstDate}}
                     <div id="hidefirstDose">
                         <div class="form-group">
                             <p>Format Required: yyyy-MM-dd</p> <br>
-                            <input type="text" name="dateOne" class="form-control" placeholder="{{firstDate}}" value="{{firstDate}}"  required/>
+                            <input type="text" name="dateOne" class="form-control" placeholder="{{firstDate}}" value="{{firstDate}}" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="lotNumberOne" class="form-control" placeholder="{{firstLot}}" value="{{firstLot}}" required/>
+                            <input type="text" name="lotNumberOne" class="form-control" placeholder="{{firstLot}}" value="{{firstLot}}" />
                         </div>
                     </div>
                     <div id="hidesecondDose" style="display:none">
                         <div class="form-group">
                             <p>Format Required: yyyy-MM-dd</p>
-                            <input type="text" name="dateTwo" class="form-control" placeholder="Vaccine 2 Date *" value="" required/>
+                            <input type="text" name="dateTwo" class="form-control" placeholder="Vaccine 2 Date *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="lotNumberTwo" class="form-control" placeholder="Vaccine 2 Lot # *" value="" required/>
+                            <input type="text" name="lotNumberTwo" class="form-control" placeholder="Vaccine 2 Lot # *" value="" />
                         </div>
                     </div>
-
                 {{else}}
                     <div id="hidefirstDose">
                         <div class="form-group">
                             <p>Format Required: yyyy-MM-dd</p> <br>
-                            <input type="text" name="dateOne" class="form-control" placeholder="Vaccine 1 Date *" value=""  required/>
+                            <input type="text" name="dateOne" class="form-control" placeholder="Vaccine 1 Date *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="lotNumberOne" class="form-control" placeholder="Vaccine 1 Lot # *" value="" required/>
+                            <input type="text" name="lotNumberOne" class="form-control" placeholder="Vaccine 1 Lot # *" value="" />
                         </div>
                     </div>
                     <div id="hidesecondDose" style="display:none">
                         <div class="form-group">
                             <p>Format Required: yyyy-MM-dd</p>
-                            <input type="text" name="dateTwo" class="form-control" placeholder="Vaccine 2 Date *" value="" required/>
+                            <input type="text" name="dateTwo" class="form-control" placeholder="Vaccine 2 Date *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="lotNumberTwo" class="form-control" placeholder="Vaccine 2 Lot # *" value="" required/>
+                            <input type="text" name="lotNumberTwo" class="form-control" placeholder="Vaccine 2 Lot # *" value="" />
                         </div>
                     </div>
-
                 {{/if}}
+
+
+
+
                 <div class="form-group">
-                    <input type="submit" name="btnSubmit" class="btnContact" value="Send Approval"/>
+                    <input type="submit" name="btnSubmit" class="btnContact" value="Send Approval" />
                 </div>
-
-
-
-
-
-<!--                </div>-->
+                <!--                </div>-->
+            </div>
 
             <!--
             <div class="col-md-6">
@@ -137,7 +117,6 @@
                 </div>
             </div> -->
 
-        </div>
         </div>
     </form>
 
