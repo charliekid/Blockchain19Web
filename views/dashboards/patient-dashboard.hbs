@@ -122,9 +122,18 @@
                                                                 Doctor Approval: no <br>
                                                             {{/if}}
                                                             {{#if state.data.vaccinationProcessComplete}}
-                                                                Vaccination Completed: yes
+                                                                Vaccination Completed: yes <br>
                                                             {{else}}
-                                                                Vaccination Completed: no
+                                                                Vaccination Completed: no <br>
+                                                            {{/if}}
+
+                                                            {{#if state.data.dose}}
+                                                                <br>Dose Manufacturer : {{state.data.firstDoseManufacturer}} <br>
+                                                                1st Dose Date: {{state.data.firstDoseDate}}<br>
+                                                                1st Dose Lot: {{state.data.firstDoseLot}}<br>
+
+                                                                <br> 2nd Dose Date {{state.data.secondDoseDate}}<br>
+                                                                2nd Dose Lot: {{state.date.secondDoseLot}}<br>
                                                             {{/if}}
 
                                                         </div>

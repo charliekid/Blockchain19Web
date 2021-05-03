@@ -40,10 +40,8 @@
             </div>
         </div>
         <div class="col-md-10 col-sm-11 display-table-cell v-align">
-            <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
             <div class="row">
                 <header>
-                    <!--                    <div class="col-md-7">-->
                     <nav class="navbar-default pull-left">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
@@ -55,7 +53,6 @@
                         </div>
                     </nav>
 
-                    <!--                    </div>-->
                     <div class="col-md-5">
                         <div class="header-rightside">
                             <ul class="list-inline header-top pull-right">
@@ -90,13 +87,18 @@
                             {{#each transactions}}
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body">
-                                        <h5 class="card-title">Transaction</h5>
+                                        <h5 class="card-title">{{state.data.firstName}} {{state.data.lastName}}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">
-                                            state: {{state.data.firstName}} <br>
-                                            firstName: {{state.data.firstName}} <br>
-                                            lastName: {{state.data.lastName}} <br>
-                                            doses: {{state.data.dose}} <br>
-                                            <!--                                        <a href="#" class="card-link">More</a>-->
+                                            {{#if state.data.approvedForVaccination}}
+                                                Doctor Approval: yes <br>
+                                            {{else}}
+                                                Doctor Approval: no <br>
+                                            {{/if}}
+                                            {{#if state.data.vaccinationProcessComplete}}
+                                                Vaccination Completed: yes
+                                            {{else}}
+                                                Vaccination Completed: no
+                                            {{/if}}
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transactionModal{{state.data.firstName}}{{state.data.lastName}}">
                                                 More
@@ -113,22 +115,34 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            firstName: {{state.data.firstName}} <br>
-                                                            lastName: {{state.data.lastName}} <br>
-                                                            doses: {{state.data.dose}} <br>
+                                                            First Name: {{state.data.firstName}} <br>
+                                                            Last Name: {{state.data.lastName}} <br>
+                                                            Doses: {{state.data.dose}} <br>
                                                             {{#if state.data.approvedForVaccination}}
-                                                                approved: yes
+                                                                Doctor Approval: yes <br>
                                                             {{else}}
-                                                                approved: no
+                                                                Doctor Approval: no <br>
+                                                            {{/if}}
+                                                            {{#if state.data.vaccinationProcessComplete}}
+                                                                Vaccination Completed: yes <br>
+                                                            {{else}}
+                                                                Vaccination Completed: no <br>
+                                                            {{/if}}
+
+                                                            {{#if state.data.dose}}
+                                                                <br>Dose Manufacturer : {{state.data.firstDoseManufacturer}} <br>
+                                                                1st Dose Date: {{state.data.firstDoseDate}}<br>
+                                                                1st Dose Lot: {{state.data.firstDoseLot}}<br>
+
+                                                                <br> 2nd Dose Date {{state.data.secondDoseDate}}<br>
+                                                                2nd Dose Lot: {{state.date.secondDoseLot}}<br>
                                                             {{/if}}
 
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-<!--                                                            <form action="/dashboard/approvePatient/{{state.data.firstName}}/{{state.data.lastName}}" method="POST">-->
-<!--                                                            <button type="button" class="btn btn-primary">Approve Patient</button>-->
+
                                                             <a href="/dashboard/approvePatient/{{state.data.firstName}}/{{state.data.lastName}}" class="view btn-sm active">Approve Patient</a>
-<!--                                                            </form>-->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -143,21 +157,7 @@
                             <h2> No transactions</h2>
                             <h2> {{transactions}}</h2>
                         {{/if}}
-
-
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span>Period:</span> Last Year
-                            </button>
-                            <div class="dropdown-menu">
-                                <a href="#">2012</a>
-                                <a href="#">2014</a>
-                                <a href="#">2015</a>
-                                <a href="#">2016</a>
-                            </div>
-                        </div>
                     </div>
-                    <!--                    </div>-->
                 </div>
             </div>
         </div>
