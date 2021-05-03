@@ -142,7 +142,11 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                                                            <a href="/dashboard/approvePatient/{{state.data.firstName}}/{{state.data.lastName}}" class="view btn-sm active">Approve Patient</a>
+                                                            <!--if the patient is already approved we don't need the approve button-->
+                                                            {{#if state.data.approvedForVaccination}}
+                                                            {{else}}
+                                                                <a href="/dashboard/approvePatient/{{state.data.firstName}}/{{state.data.lastName}}" class="view btn-sm active">Approve Patient</a>
+                                                            {{/if}}
                                                         </div>
                                                     </div>
                                                 </div>
